@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/background_wallpaper"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="30dp"
@@ -15,8 +15,7 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/pink"
-        android:background="@color/white"
+        android:textColorHint="@color/white"
         >
 
         <EditText
@@ -24,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
+            android:textColorHint="@color/black"
             android:ems="10"
             android:padding="10dp"
             android:inputType="textEmailAddress"
@@ -36,8 +36,7 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/pink"
-        android:background="@color/white"
+        android:textColorHint="@color/white"
         >
 
         <EditText
@@ -45,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
+            android:textColorHint="@color/black"
             android:ems="10"
             android:padding="10dp"
             android:inputType="textPassword"
@@ -59,15 +59,15 @@
         android:text="LOGIN"
         android:textSize="22sp"
         android:textColor="@color/white"
+        android:background="@drawable/button_rounded"
         android:layout_marginTop="20sp"
-        android:background="@color/blue"
         />
     <Button
         android:id="@+id/gotosignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Not a user? Sign up"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_marginTop="10sp"
         android:padding="10sp"
         android:onClick="gotosignupbutton"/>
