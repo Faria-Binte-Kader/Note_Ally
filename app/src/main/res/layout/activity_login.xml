@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/pink"
+        android:background="@color/white"
         >
 
         <EditText
@@ -23,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:textColorHint="@color/black"
             android:ems="10"
             android:padding="10dp"
             android:inputType="textEmailAddress"
@@ -36,7 +36,8 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/pink"
+        android:background="@color/white"
         >
 
         <EditText
@@ -44,7 +45,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:textColorHint="@color/black"
             android:ems="10"
             android:padding="10dp"
             android:inputType="textPassword"
@@ -60,16 +60,15 @@
         android:textSize="22sp"
         android:textColor="@color/white"
         android:layout_marginTop="20sp"
-        android:background="@color/teal_700"
+        android:background="@color/blue"
         />
     <Button
         android:id="@+id/gotosignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Not a user? Sign up"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:layout_marginTop="10sp"
-        android:background="@color/white"
         android:padding="10sp"
         android:onClick="gotosignupbutton"/>
 
