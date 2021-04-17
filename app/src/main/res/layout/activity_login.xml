@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/background_wallpaper"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="30dp"
@@ -59,8 +59,8 @@
         android:text="LOGIN"
         android:textSize="22sp"
         android:textColor="@color/white"
+        android:background="@drawable/button_rounded"
         android:layout_marginTop="20sp"
-        android:background="@color/teal_700"
         />
     <Button
         android:id="@+id/gotosignup"
@@ -69,7 +69,6 @@
         android:text="Not a user? Sign up"
         android:textColor="@color/black"
         android:layout_marginTop="10sp"
-        android:background="@color/white"
         android:padding="10sp"
         android:onClick="gotosignupbutton"/>
 
