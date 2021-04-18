@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_profile"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/nav_help"
+        android:title="Help"
+        android:icon="@drawable/ic_help"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Log out"
+        android:icon="@drawable/ic_baseline_logout"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/ic_chat"
+        app:showAsAction="always"
+        android:title="Chat" />
+    <item
+        android:id="@+id/nav_notification"
+        android:title="Notification"
+        android:icon="@drawable/ic_notification"
+        app:showAsAction="always"/>
+</menu>

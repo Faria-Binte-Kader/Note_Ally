@@ -11,6 +11,11 @@
         android:theme="@style/Theme.NoteAlly">
         <activity android:name=".AddEvent"></activity>
         <activity android:name=".FindEvent" />
+        <activity android:name=".Chat" />
+        <activity android:name=".Profile" />
+        <activity android:name=".Help" />
+        <activity android:name=".Notification" />
+        <activity android:name=".Logout" />
         <activity android:name=".AddJob" />
         <activity android:name=".FindJob" />
         <activity android:name=".login" />

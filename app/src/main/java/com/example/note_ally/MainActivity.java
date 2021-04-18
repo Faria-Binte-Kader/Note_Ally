@@ -7,7 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
@@ -36,6 +38,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new fragment_mynotes()).commit();
             navigationView.setCheckedItem(R.id.nav_mynotes);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_menu, menu);
+        return true;
     }
 
     @Override
@@ -70,5 +78,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id=item.getItemId();
+
+        if(id==R.id.nav_chat)
+        {
+            Intent intent = new Intent(MainActivity.this, Chat.class);
+            startActivity(intent);
+        }
+        else if(id==R.id.nav_notification)
+        {
+            startActivity(new Intent(getApplicationContext(), Notification.class));
+        }
+        else if(id==R.id.nav_help)
+        {
+            startActivity(new Intent(getApplicationContext(), Help.class));
+        }
+        else if(id==R.id.nav_logout)
+        {
+            startActivity(new Intent(getApplicationContext(), Logout.class));
+        }
+        else if(id==R.id.nav_profile)
+        {
+            startActivity(new Intent(getApplicationContext(), Profile.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
