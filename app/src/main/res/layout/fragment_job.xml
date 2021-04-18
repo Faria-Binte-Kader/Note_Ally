@@ -15,9 +15,9 @@
         android:layout_marginTop="20sp"
         android:background="@drawable/button_rounded"
         android:padding="10dp"
-        android:text="Find Jobs"
+        android:text="FIND JOBS"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/findeventbtn"
@@ -27,8 +27,8 @@
         android:layout_marginTop="20sp"
         android:background="@drawable/button_rounded"
         android:padding="10dp"
-        android:text="Find Events"
+        android:text="FIND EVENTS"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
 </LinearLayout>
