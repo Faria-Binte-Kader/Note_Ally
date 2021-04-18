@@ -10,26 +10,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class HelpAdapter extends RecyclerView.Adapter<ViewHolderHelp> implements AdapterView.OnItemSelectedListener {
+public class AdmissionHelpAdapter extends RecyclerView.Adapter<ViewHolderAdmissionHelp> implements AdapterView.OnItemSelectedListener {
 
     FindHelp findHelp;
-    ArrayList<Help> helpArrayList;
+    ArrayList<AdmissionHelp> helpArrayList;
 
-    public HelpAdapter(FindHelp findHelp,ArrayList<Help> helpArrayList) {
+    public AdmissionHelpAdapter(FindHelp findHelp, ArrayList<AdmissionHelp> helpArrayList) {
         this.findHelp = findHelp;
         this.helpArrayList = helpArrayList;
     }
 
     @NonNull
     @Override
-    public ViewHolderHelp onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolderAdmissionHelp onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(findHelp.getBaseContext());
         View view = layoutInflater.inflate(R.layout.help_list, parent, false);
-        return new ViewHolderHelp(view);
+        return new ViewHolderAdmissionHelp(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolderHelp holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolderAdmissionHelp holder, final int position) {
         holder.intitutionsubject.setText(helpArrayList.get(position).getInstitutionsubject());
         holder.details.setText(helpArrayList.get(position).getDetails());
     }
