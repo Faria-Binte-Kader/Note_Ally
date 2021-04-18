@@ -3,38 +3,29 @@
     >
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_profile"
-            android:title="Profile"
-            android:icon="@drawable/ic_profile"
-           />
-        <item
             android:id="@+id/nav_mynotes"
             android:title="My Notes"
             android:icon="@drawable/ic_mynote"/>
         <item
-            android:id="@+id/nav_notewall"
-            android:title="Note Wall"
-            android:icon="@drawable/ic_notewall"/>
+            android:id="@+id/nav_feed"
+            android:title="Feed"
+            android:icon="@drawable/ic_feed"/>
         <item
-            android:id="@+id/nav_bookwall"
-            android:title="Book Wall"
-            android:icon="@drawable/ic_bookwall"/>
+            android:id="@+id/nav_repository"
+            android:title="Repository"
+            android:icon="@drawable/ic_repository"/>
         <item
-            android:id="@+id/nav_jon"
-            android:title="Find Job"
+            android:id="@+id/nav_marketplace"
+            android:title="Marketplace"
+            android:icon="@drawable/ic_marketplace"/>
+        <item
+            android:id="@+id/nav_job"
+            android:title="Find Jobs and Events"
             android:icon="@drawable/ic_jobsearch"/>
         <item
             android:id="@+id/nav_admission"
             android:title="Admission"
             android:icon="@drawable/ic_addmission"/>
-        <item
-            android:id="@+id/nav_help"
-            android:title="Help"
-            android:icon="@drawable/ic_help"/>
-        <item
-            android:id="@+id/nav_logout"
-            android:title="Log out"
-            android:icon="@drawable/ic_baseline_logout"/>
 
 
     </group>

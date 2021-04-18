@@ -41,33 +41,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new fragment_profile()).commit();
-                break;
+
             case R.id.nav_mynotes:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new fragment_mynotes()).commit();
                 break;
-            case R.id.nav_notewall:
+            case R.id.nav_feed:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new fragment_notewall()).commit();
+                        new fragment_feed()).commit();
                 break;
-            case R.id.nav_bookwall:
+            case R.id.nav_repository:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new fragment_bookwall()).commit();
+                        new fragment_repository()).commit();
                 break;
-            case R.id.nav_jon:
+            case R.id.nav_job:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new fragment_job()).commit();
                 break;
-            case R.id.nav_logout:
+            case R.id.nav_marketplace:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new fragment_logout()).commit();
-                break;
-            case R.id.nav_help:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new fragment_help()).commit();
+                        new fragment_marketplace()).commit();
                 break;
             case R.id.nav_admission:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
