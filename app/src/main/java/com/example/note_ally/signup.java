@@ -124,7 +124,7 @@ public class signup extends AppCompatActivity implements AdapterView.OnItemSelec
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+        ((TextView) adapterView.getChildAt(0)).setTextColor(Color.BLACK);
         Toast.makeText(this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
     }
 
