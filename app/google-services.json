@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "720882787967",
+    "project_id": "note-ally-e8276",
+    "storage_bucket": "note-ally-e8276.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720882787967:android:94431f41cb31b11da1014a",
+        "android_client_info": {
+          "package_name": "com.example.note_ally"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720882787967-ne372tepppa68nal1l4du088h7am7su9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAchpbw7DzTuhoFX6-tvPx4N5acH-H8NNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720882787967-ne372tepppa68nal1l4du088h7am7su9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
