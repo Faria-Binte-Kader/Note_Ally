@@ -15,9 +15,15 @@
         <activity android:name=".FindHelp" />
         <activity android:name=".AddEvent" />
         <activity android:name=".FindEvent" />
+        <activity android:name=".Chat" />
+        <activity android:name=".Profile" />
+        <activity android:name=".Help" />
+        <activity android:name=".Notification" />
+        <activity android:name=".Logout" />
         <activity android:name=".AddJob" />
         <activity android:name=".FindJob" />
         <activity android:name=".login" />
+        <activity android:name=".signup" />
         <activity android:name=".splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
