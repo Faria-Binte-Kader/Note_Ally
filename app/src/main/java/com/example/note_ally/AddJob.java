@@ -46,9 +46,9 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
         addJobBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String jobcompany = jobCompany.getText().toString().toUpperCase();
-                final String jobposition = jobPosition.getText().toString().toUpperCase();
-                final String jobdetails = jobDetails.getText().toString().toUpperCase();
+                final String jobcompany = jobCompany.getText().toString();
+                final String jobposition = jobPosition.getText().toString();
+                final String jobdetails = jobDetails.getText().toString();
                 final String jobtag = jobTag.getText().toString().toUpperCase();
 
                 DocumentReference documentReference = fstoreJob.collection("Job").document();

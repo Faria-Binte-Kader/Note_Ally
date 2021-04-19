@@ -47,9 +47,9 @@ public class AddEvent extends AppCompatActivity implements AdapterView.OnItemSel
             @Override
             public void onClick(View view) {
 
-                final String eventorganizer = eventOrganizer.getText().toString().toUpperCase();
-                final String eventlocation = eventLocation.getText().toString().toUpperCase();
-                final String eventdetails = eventDetails.getText().toString().toUpperCase();
+                final String eventorganizer = eventOrganizer.getText().toString();
+                final String eventlocation = eventLocation.getText().toString();
+                final String eventdetails = eventDetails.getText().toString();
                 final String eventtag = eventTag.getText().toString().toUpperCase();
 
                 DocumentReference documentReference = fstoreEvent.collection("Event").document();

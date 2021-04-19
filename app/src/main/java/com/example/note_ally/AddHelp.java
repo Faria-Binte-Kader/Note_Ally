@@ -45,8 +45,8 @@ public class AddHelp extends AppCompatActivity implements AdapterView.OnItemSele
         addHelpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String helpinstitutionsubject = helpInstitutionsubject.getText().toString().toUpperCase();
-                final String helpdetails = helpDetails.getText().toString().toUpperCase();
+                final String helpinstitutionsubject = helpInstitutionsubject.getText().toString();
+                final String helpdetails = helpDetails.getText().toString();
                 final String helptag = helpTag.getText().toString().toUpperCase();
 
                 DocumentReference documentReference = fstoreHelp.collection("Admissionhelp").document();
@@ -62,7 +62,7 @@ public class AddHelp extends AppCompatActivity implements AdapterView.OnItemSele
                     }
                 });
 
-                startActivity(new Intent(getApplicationContext(), FindNotice.class));
+                startActivity(new Intent(getApplicationContext(), FindHelp.class));
             }
         });
     }

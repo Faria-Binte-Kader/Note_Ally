@@ -45,8 +45,8 @@ public class AddNotice extends AppCompatActivity implements AdapterView.OnItemSe
         addNoticeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String noticeinstitution = noticeInstitution.getText().toString().toUpperCase();
-                final String noticedetails = noticeDetails.getText().toString().toUpperCase();
+                final String noticeinstitution = noticeInstitution.getText().toString();
+                final String noticedetails = noticeDetails.getText().toString();
                 final String noticetag = noticeTag.getText().toString().toUpperCase();
 
                 DocumentReference documentReference = fstoreNotice.collection("Notice").document();
