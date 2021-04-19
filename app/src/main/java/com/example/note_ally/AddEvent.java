@@ -23,10 +23,9 @@ import java.util.Map;
 
 public class AddEvent extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public static final String TAG = "TAG AddDoctor";
+    public static final String TAG = "TAG AddEvent";
     Button addEventBtn;
 
-    FirebaseAuth fAuthEvent;
     FirebaseFirestore fstoreEvent;
 
     private EditText eventOrganizer, eventLocation, eventDetails, eventTag;
@@ -36,15 +35,13 @@ public class AddEvent extends AppCompatActivity implements AdapterView.OnItemSel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
 
-        addEventBtn = findViewById(R.id.addevent);
-
-        fAuthEvent = FirebaseAuth.getInstance();
-        fstoreEvent = FirebaseFirestore.getInstance();
-
+        addEventBtn = findViewById(R.id.add_event_btn);
         eventOrganizer = findViewById(R.id.addEventOrganizer);
         eventLocation = findViewById(R.id.addEventLocation);
         eventDetails = findViewById(R.id.addEventDetails);
         eventTag = findViewById(R.id.addEventTag);
+
+        fstoreEvent = FirebaseFirestore.getInstance();
 
         addEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
