@@ -46,6 +46,7 @@ public class AddEvent extends AppCompatActivity implements AdapterView.OnItemSel
         addEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 final String eventorganizer = eventOrganizer.getText().toString().toUpperCase();
                 final String eventlocation = eventLocation.getText().toString().toUpperCase();
                 final String eventdetails = eventDetails.getText().toString().toUpperCase();

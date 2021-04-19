@@ -16,6 +16,7 @@ public class ViewHolderEvent extends RecyclerView.ViewHolder {
         organizer = itemView.findViewById(R.id.organizerTextView);
         location = itemView.findViewById(R.id.locationTextView);
         details = itemView.findViewById(R.id.detailsTextView2);
+
     }
 
 }
