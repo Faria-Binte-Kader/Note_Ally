@@ -121,7 +121,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
         android:background="@drawable/button_rounded"
-        android:text="ADD JOB"
+        android:text="ADD EVENT"
         android:textColor="@color/white"
         android:textSize="22sp"/>
 
