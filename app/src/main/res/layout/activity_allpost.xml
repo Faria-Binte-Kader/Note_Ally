@@ -9,7 +9,7 @@
     android:background="@color/white">
 
     <SearchView
-        android:id="@+id/searchjob"
+        android:id="@+id/searchallpost"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:padding="10dp"
@@ -18,19 +18,9 @@
         android:background="@color/gray"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/jobsRecycle"
+        android:id="@+id/allpostRecycle"
         android:layout_marginTop="70dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addjob"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_job"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/white"/>
 
 </RelativeLayout>
