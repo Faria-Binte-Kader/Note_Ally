@@ -52,13 +52,11 @@ public class AllpostAdapter extends RecyclerView.Adapter<ViewHolderAllPost> {
 
 
         /*holder.like.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 FirebaseAuth fAuthpost;
                 final FirebaseFirestore fStorepost;
                 String userIDpost;
-
                 fAuthpost = FirebaseAuth.getInstance();
                 fStorepost = FirebaseFirestore.getInstance();
                 userIDpost = fAuthpost.getCurrentUser().getUid();
@@ -76,11 +74,9 @@ public class AllpostAdapter extends RecyclerView.Adapter<ViewHolderAllPost> {
                                             Log.d("TAG","Success");
                                         }
                                     });
-
                         }}
                 });
                 Editable an=holder.answer.getText();
-
                 fStorepost.collection("Questionanswer").document(id)
                         .update("Answer",an.toString())
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -89,7 +85,6 @@ public class AllpostAdapter extends RecyclerView.Adapter<ViewHolderAllPost> {
                                 Log.d("TAG","Success");
                             }
                         });
-
             }
         });*/
 

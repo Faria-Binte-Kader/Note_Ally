@@ -22,35 +22,35 @@ import java.util.ArrayList;
 
 public class Allpost extends AppCompatActivity {
 
-        androidx.recyclerview.widget.RecyclerView RecyclerView;
-        FirebaseFirestore fstorepost;
-        ArrayList<Feedpost> allpostArrayList;
-        AllpostAdapter adapter;
-        String s;
+    androidx.recyclerview.widget.RecyclerView RecyclerView;
+    FirebaseFirestore fstorepost;
+    ArrayList<Feedpost> allpostArrayList;
+    AllpostAdapter adapter;
+    String s;
 
-        String uid;
+    String uid;
 
-        FirebaseAuth fAuthpost;
+    FirebaseAuth fAuthpost;
 
-        String TAG = "TAG allpost";
+    String TAG = "TAG allpost";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_allpost);
 
-            allpostArrayList = new ArrayList<>();
+        allpostArrayList = new ArrayList<>();
 
-            RecyclerView = findViewById(R.id.allpostRecycle);
-            RecyclerView.setHasFixedSize(true);
-            RecyclerView.setLayoutManager(new LinearLayoutManager(this));
-            fstorepost = FirebaseFirestore.getInstance();
+        RecyclerView = findViewById(R.id.allpostRecycle);
+        RecyclerView.setHasFixedSize(true);
+        RecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        fstorepost = FirebaseFirestore.getInstance();
 
-            fAuthpost = FirebaseAuth.getInstance();
-            fstorepost = FirebaseFirestore.getInstance();
+        fAuthpost = FirebaseAuth.getInstance();
+        fstorepost = FirebaseFirestore.getInstance();
 
 
-            loadDataFromFirebase();
-            searchDataInFirebase();
+        loadDataFromFirebase();
+        searchDataInFirebase();
     }
 
     private void searchDataInFirebase() {
@@ -81,7 +81,7 @@ public class Allpost extends AppCompatActivity {
                                     uid = querySnapshot.getString("UserID");
                                     pid = querySnapshot.getString("PostID");
 
-                                     Feedpost feedpost = new Feedpost(tag,details,name,uid,like,dislike,report,pid);
+                                    Feedpost feedpost = new Feedpost(tag,details,name,uid,like,dislike,report,pid);
                                     allpostArrayList.add(feedpost);
                                 }
                                 adapter = new AllpostAdapter(Allpost.this, allpostArrayList);
