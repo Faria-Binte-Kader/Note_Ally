@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteAlly">
         <activity android:name=".ViewNote"></activity>
+        <activity android:name=".Addpicture"/>
+        <activity android:name=".Allpicture"></activity>
+        <activity android:name=".Addpdf"/>
+        <activity android:name=".Allpdf"/>
         <activity android:name=".AddNote" />
         <activity android:name=".Addmypost" />
         <activity android:name=".Mypost" />
