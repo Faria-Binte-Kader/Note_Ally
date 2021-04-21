@@ -125,7 +125,6 @@ public class Addpdf extends AppCompatActivity implements AdapterView.OnItemSelec
             // Here we are initialising the progress dialog box
             dialog = new ProgressDialog(this);
             dialog.setMessage("Uploading");
-
             dialog.show();
             imageuri = data.getData();
             final String timestamp = "" + System.currentTimeMillis();

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,14 +26,14 @@ public class Allpicture extends AppCompatActivity implements View.OnClickListene
 
     public FloatingActionButton floatingActionButton;
     androidx.recyclerview.widget.RecyclerView RecyclerView;
-    FirebaseFirestore fstorepost;
-    ArrayList<Feedpost> mypostArrayList;
-    MypostAdapter adapter;
+    FirebaseFirestore fstorepicture;
+    ArrayList<Modelpicture> allpictureArrayList;
+    PictureAdapter adapter;
     String s;
 
     String uid;
 
-    FirebaseAuth fAuthpost;
+    FirebaseAuth fAuthpicture;
 
     String TAG = "TAG";
     @Override
@@ -41,94 +42,107 @@ public class Allpicture extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_allpicture);
 
         findViewById(R.id.addpicture).setOnClickListener(this);
-       // mypostArrayList = new ArrayList<>();
+        allpictureArrayList = new ArrayList<>();
 
         RecyclerView = findViewById(R.id.allpictureRecycle);
         RecyclerView.setHasFixedSize(true);
         RecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        /*fstorepost = FirebaseFirestore.getInstance();
 
-        fAuthpost = FirebaseAuth.getInstance();
-        fstorepost = FirebaseFirestore.getInstance();
-        uid = fAuthpost.getCurrentUser().getUid();
+        fAuthpicture = FirebaseAuth.getInstance();
+        fstorepicture = FirebaseFirestore.getInstance();
+        uid = fAuthpicture.getCurrentUser().getUid();
 
 
-        //loadDataFromFirebase();
-        searchDataInFirebase();*/
+        loadDataFromFirebase();
+        searchDataInFirebase();
     }
 
-   /* private void searchDataInFirebase() {
-        if (mypostArrayList.size() > 0)
-            mypostArrayList.clear();
-        fstorepost.collection("FeedPost")
-                .whereEqualTo("UserID", uid)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    String like, dislike, details,tag,report,name,pid;
 
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for (DocumentSnapshot querySnapshot : task.getResult()) {
-                            like = querySnapshot.getString("Like");
-                            dislike = querySnapshot.getString("Dislike");
-                            details = querySnapshot.getString("Details");
-                            tag = querySnapshot.getString("Tag");
-                            report = querySnapshot.getString("Report");
-                            name = querySnapshot.getString("Username");
-                            pid = querySnapshot.getString("PostID");
+    private void searchDataInFirebase() {
+        if (allpictureArrayList.size() > 0)
+            allpictureArrayList.clear();
+        SearchView searchView = findViewById(R.id.searchallpicture);
 
-                            Feedpost feedpost = new Feedpost(tag,details,name,uid,like,dislike,report,pid);
-                            mypostArrayList.add(feedpost);
-                        }
-                        adapter = new MypostAdapter(Mypost.this, mypostArrayList);
-                        RecyclerView.setAdapter(adapter);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Mypost.this, "Problem ---I---", Toast.LENGTH_SHORT).show();
-                        Log.v("---I---", e.getMessage());
-                    }
-                });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(final String s) {
+                if (allpictureArrayList.size() > 0)
+                    allpictureArrayList.clear();
+                fstorepicture.collection("PICTURE")
+                        .whereEqualTo("Tag", s.toUpperCase())
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            String link, details,tag,name,uid;
 
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                for (DocumentSnapshot querySnapshot : task.getResult()) {
+
+                                    tag = querySnapshot.getString("Tag");
+                                    details = querySnapshot.getString("Details");
+                                    name = querySnapshot.getString("Username");
+                                    uid = querySnapshot.getString("UserID");
+                                    link = querySnapshot.getString("Downloadlink");
+
+                                    Modelpicture modelpicture = new Modelpicture(tag,details,name,uid,link);
+                                    allpictureArrayList.add(modelpicture);
+                                }
+                                adapter = new PictureAdapter(Allpicture.this, allpictureArrayList);
+                                RecyclerView.setAdapter(adapter);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(Allpicture.this, "Problem ---I---", Toast.LENGTH_SHORT).show();
+                                Log.v("---I---", e.getMessage());
+                            }
+                        });
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
     }
 
     private void loadDataFromFirebase() {
-        if (mypostArrayList.size() > 0)
-            mypostArrayList.clear();
-        fstorepost.collection("FeedPost")
+        if (allpictureArrayList.size() > 0)
+            allpictureArrayList.clear();
+        fstorepicture.collection("PICTURE")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    String like, dislike, details,tag,report,pid;
+                    String link, details,tag,name,uid;
 
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (DocumentSnapshot querySnapshot : task.getResult()) {
-                            like = querySnapshot.getString("Like");
-                            dislike = querySnapshot.getString("Dislike");
-                            details = querySnapshot.getString("Details");
                             tag = querySnapshot.getString("Tag");
-                            report = querySnapshot.getString("Report");
-                            pid = querySnapshot.getString("PostID");
+                            details = querySnapshot.getString("Details");
+                            name = querySnapshot.getString("Username");
+                            uid = querySnapshot.getString("UserID");
+                            link = querySnapshot.getString("Downloadlink");
 
-                            Feedpost feedpost = new Feedpost(tag,details,s,uid,like,dislike,report,pid);
-                            mypostArrayList.add(feedpost);
+
+                            Modelpicture modelpicture = new Modelpicture(tag,details,name,uid,link);
+                            allpictureArrayList.add(modelpicture);
                         }
-                        adapter = new MypostAdapter(Mypost.this, mypostArrayList);
+                        adapter = new PictureAdapter(Allpicture.this, allpictureArrayList);
                         RecyclerView.setAdapter(adapter);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Mypost.this, "Problem ---I---", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Allpicture.this, "Problem ---I---", Toast.LENGTH_SHORT).show();
                         Log.v("---I---", e.getMessage());
                     }
                 });
-    }*/
+    }
 
-    private void allpicture() {
+    private void addpicture() {
         SharedPrefManager.getInstance(this).clear();
         Intent intent = new Intent(this, Addpicture.class);
         startActivity(intent);
@@ -138,7 +152,7 @@ public class Allpicture extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.addpicture:
-                allpicture();
+                addpicture();
                 break;
         }
 

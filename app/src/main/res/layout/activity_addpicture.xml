@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginTop="70dp"
     android:padding="30dp"
   >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +23,7 @@
             android:layout_height="wrap_content"
             android:background="@color/gray"
             android:padding="10dp"
-            android:text="Insert a Tag, Details and pictures(Max 10, min 0) related to the Post"
+            android:text="Insert a Tag, Details and a Photo"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -81,15 +83,10 @@
             android:id="@+id/choosebtn"
             />
 
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/picselectno"
-            android:text="textalert"
-            android:visibility="invisible"
-            android:textColor="@color/black"
-            android:textSize="20dp"/>
+            android:layout_height="match_parent"
+            android:id="@+id/showimage1"/>
     </LinearLayout>
 
     <Button
@@ -101,5 +98,5 @@
         android:text="ADD POST"
         android:textColor="@color/white"
         android:textSize="22sp"/>
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
