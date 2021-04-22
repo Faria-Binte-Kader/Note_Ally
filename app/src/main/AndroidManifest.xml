@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteAlly">
-        <activity android:name=".ViewNote"></activity>
-        <activity android:name=".Addpicture"/>
-        <activity android:name=".Allpicture"></activity>
-        <activity android:name=".Addpdf"/>
-        <activity android:name=".Allpdf"/>
+        <activity android:name=".FindTags" />
+        <activity android:name=".ViewNote" />
+        <activity android:name=".Addpicture" />
+        <activity android:name=".Allpicture" />
+        <activity android:name=".Addpdf" />
+        <activity android:name=".Allpdf" />
         <activity android:name=".AddNote" />
         <activity android:name=".Addmypost" />
         <activity android:name=".Mypost" />

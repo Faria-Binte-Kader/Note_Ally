@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -140,7 +141,6 @@ public class FindNotice extends AppCompatActivity implements AdapterView.OnItemS
         Intent intent = new Intent(this, AddNotice.class);
         startActivity(intent);
     }
-
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

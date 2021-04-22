@@ -144,7 +144,6 @@ public class FindEvent extends AppCompatActivity implements AdapterView.OnItemSe
         startActivity(intent);
     }
 
-
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 

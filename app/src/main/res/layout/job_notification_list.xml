@@ -2,14 +2,15 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardElevation="5dp"
     app:cardBackgroundColor="@color/gray"
     app:cardCornerRadius="3dp"
-    app:cardUseCompatPadding="true">
-
+    app:cardUseCompatPadding="true"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,7 +22,13 @@
             android:orientation="horizontal"
             android:padding="10dp">
             <TextView
-                android:id="@+id/postusername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Company: "
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/companynotifTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -35,9 +42,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp">
-
             <TextView
-                android:id="@+id/postdetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Position: "
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/positionnotifTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -48,42 +60,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_chat"
-                android:id="@+id/postchat"/>
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_report"
-                android:id="@+id/postreport"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Details: "
                 android:textColor="@color/black"
-                android:id="@+id/allpostlikenumber"/>
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_like"
-                android:id="@+id/postlike"/>
+                />
             <TextView
+                android:id="@+id/detailsnotifTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:id="@+id/allpostdislikenumber"/>
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_dislike"
-                android:id="@+id/postdislike"/>
-
+                />
         </LinearLayout>
-
 
     </LinearLayout>
 

@@ -52,33 +52,42 @@ public class AllpostAdapter extends RecyclerView.Adapter<ViewHolderAllPost> {
 
 
         /*holder.like.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 FirebaseAuth fAuthpost;
                 final FirebaseFirestore fStorepost;
                 String userIDpost;
+
                 fAuthpost = FirebaseAuth.getInstance();
                 fStorepost = FirebaseFirestore.getInstance();
                 userIDpost = fAuthpost.getCurrentUser().getUid();
-                DocumentReference documentReference = fStorepost.collection("Doctor").document(userIDpost);
-                documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(value!=null)
-                        {String namepost=value.getString("Name");
-                            fStorepost.collection("Questionanswer").document(id)
-                                    .update("Doctor",namepost)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            Log.d("TAG","Success");
-                                        }
-                                    });
-                        }}
-                });
-                Editable an=holder.answer.getText();
-                fStorepost.collection("Questionanswer").document(id)
-                        .update("Answer",an.toString())
+
+                fStorepost.collection("FeedPost").document(id)
+                        .update("Like", FieldValue.increment(1))
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d("TAG","Success");
+                            }
+                        });
+            }
+        });
+
+        holder.dislike.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth fAuthpost;
+                final FirebaseFirestore fStorepost;
+                String userIDpost;
+
+                fAuthpost = FirebaseAuth.getInstance();
+                fStorepost = FirebaseFirestore.getInstance();
+                userIDpost = fAuthpost.getCurrentUser().getUid();
+
+                fStorepost.collection("FeedPost").document(id)
+                        .update("Dislike",FieldValue.increment(1))
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

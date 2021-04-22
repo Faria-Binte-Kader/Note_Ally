@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,9 +8,19 @@
     android:weightSum="9"
     android:background="@color/white">
 
+    <SearchView
+        android:id="@+id/searchtags"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:padding="10dp"
+        android:queryHint="Search"
+        android:layout_margin="5dp"
+        android:background="@color/gray"/>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notificationRecycle"
+        android:id="@+id/tagsRecycle"
+        android:layout_marginTop="70dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-</LinearLayout>
+</RelativeLayout>

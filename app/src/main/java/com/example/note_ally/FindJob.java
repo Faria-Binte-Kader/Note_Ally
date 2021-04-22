@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -36,6 +37,14 @@ public class FindJob extends AppCompatActivity implements AdapterView.OnItemSele
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_job);
+
+        Button tags = findViewById(R.id.job_tag_btn);
+        tags.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tag();
+            }
+        });
 
         FloatingActionButton fabJob = findViewById(R.id.addjob);
         //findViewById(R.id.addevent).setOnClickListener(this);
@@ -143,6 +152,12 @@ public class FindJob extends AppCompatActivity implements AdapterView.OnItemSele
         startActivity(intent);
     }
 
+
+    private void tag() {
+        SharedPrefManager.getInstance(this).clear();
+        Intent intent = new Intent(this, FindTags.class);
+        startActivity(intent);
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

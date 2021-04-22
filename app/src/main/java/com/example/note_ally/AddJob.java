@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -57,6 +58,17 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                 job.put("Position", jobposition);
                 job.put("Details", jobdetails);
                 job.put("Tag", jobtag);
+
+                DocumentReference documentReference2 = fstoreJob.collection("JobTags").document();
+                Map<String, Object> tag = new HashMap<>();
+                tag.put("Tagname", jobtag);
+
+                documentReference2.set(tag).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "onSuccess: tag added");
+                    }
+                });
 
                 documentReference.set(job).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
