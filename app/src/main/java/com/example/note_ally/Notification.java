@@ -60,6 +60,36 @@ public class Notification extends AppCompatActivity implements AdapterView.OnIte
                     DocumentSnapshot doc = task.getResult();
                     if (doc.exists()) {
                         jobtag = jobtag + doc.getString("Jobtag");
+                        if (jobNotificationArrayList.size() > 0)
+                            jobNotificationArrayList.clear();
+                        fstoreNotification.collection("Job")
+                                .whereEqualTo("Tag",jobtag)
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    String company, position, details;
+
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        for (DocumentSnapshot querySnapshot : task.getResult()) {
+                                            company = querySnapshot.getString("Company");
+                                            position = querySnapshot.getString("Position");
+                                            details = querySnapshot.getString("Details");
+
+                                            JobNotification jobNotification = new JobNotification(company,position,details);
+                                            jobNotificationArrayList.add(jobNotification);
+                                        }
+                                        adapter = new JobNotificationAdapter(Notification.this, jobNotificationArrayList);
+                                        RecyclerView.setAdapter(adapter);
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(Notification.this, "Problem ---I---", Toast.LENGTH_SHORT).show();
+                                        Log.v("---I---", e.getMessage());
+                                    }
+                                });
+
                     } else {
                         Log.d("TAG", "No such document");
                     }
@@ -69,7 +99,7 @@ public class Notification extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        if (jobNotificationArrayList.size() > 0)
+        /*if (jobNotificationArrayList.size() > 0)
             jobNotificationArrayList.clear();
         fstoreNotification.collection("Job")
                 .whereEqualTo("Tag",jobtag)
@@ -97,7 +127,7 @@ public class Notification extends AppCompatActivity implements AdapterView.OnIte
                         Toast.makeText(Notification.this, "Problem ---I---", Toast.LENGTH_SHORT).show();
                         Log.v("---I---", e.getMessage());
                     }
-                });
+                });*/
 
     }
 
