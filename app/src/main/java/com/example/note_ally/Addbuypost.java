@@ -18,12 +18,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,20 +31,17 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class Addpicture extends AppCompatActivity {
+public class Addbuypost extends AppCompatActivity {
     public static final int PICK_IMAGE = 1;
-    public static final String TAG = "TAG Addpicture";
-    Button addpictureBtn, choosepicturebtn;
+    public static final String TAG = "TAG Addbuy";
+    Button addbuyBtn, choosepicturebtn;
     String uid,name;
     ImageView imageView;
     ProgressDialog dialog;
@@ -56,27 +51,28 @@ public class Addpicture extends AppCompatActivity {
     String url;
 
 
-    FirebaseFirestore fstorepicture;
-    FirebaseAuth fAuthpicture;
+    FirebaseFirestore fstorebuy;
+    FirebaseAuth fAuthbuy;
 
-    private EditText pictureTag, pictureDetails;
+    private EditText buyTag, buyDetails, buyname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addpicture);
+        setContentView(R.layout.activity_addbuypost);
 
-        addpictureBtn = findViewById(R.id.add_picture_btn);
-        choosepicturebtn = findViewById(R.id.choosebtn);
-        pictureDetails = findViewById(R.id.addpicturedetails);
-        pictureTag = findViewById(R.id.addpicturetag);
-        imageView = findViewById(R.id.showimage1);
+        addbuyBtn = findViewById(R.id.add_buypost_btn);
+        choosepicturebtn = findViewById(R.id.choosebtn2);
+        buyDetails = findViewById(R.id.addbuypostdetails);
+        buyTag = findViewById(R.id.addbuyposttag);
+        buyname = findViewById(R.id.addproductname);
+        imageView = findViewById(R.id.showimage2);
 
-        fAuthpicture = FirebaseAuth.getInstance();
-        fstorepicture = FirebaseFirestore.getInstance();
-        uid = fAuthpicture.getCurrentUser().getUid();
+        fAuthbuy = FirebaseAuth.getInstance();
+        fstorebuy = FirebaseFirestore.getInstance();
+        uid = fAuthbuy.getCurrentUser().getUid();
 
-        DocumentReference documentReference = fstorepicture.collection("User").document(uid);
+        DocumentReference documentReference = fstorebuy.collection("User").document(uid);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -90,16 +86,15 @@ public class Addpicture extends AppCompatActivity {
         choosepicturebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(Addpicture.this,
+                if (ActivityCompat.checkSelfPermission(Addbuypost.this,
                         Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(Addpicture.this,
+                    ActivityCompat.requestPermissions(Addbuypost.this,
                             new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                             100);
                 }
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
-                //intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                //startActivityForResult(intent,PICK_IMAGE);
+
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(
                         Intent.createChooser(
@@ -108,15 +103,15 @@ public class Addpicture extends AppCompatActivity {
                         PICK_IMAGE);
             }
         });
-        addpictureBtn.setOnClickListener(new View.OnClickListener() {
+        addbuyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog = new ProgressDialog(Addpicture.this);
+                dialog = new ProgressDialog(Addbuypost.this);
                 dialog.setMessage("Uploading");
                 dialog.show();
                 if (ImageUri != null) {
                     StorageReference storageReference= FirebaseStorage.getInstance().getReference().child("images/" + UUID.randomUUID().toString());
-                    Toast.makeText(Addpicture.this, storageReference.getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Addbuypost.this, storageReference.getName(), Toast.LENGTH_SHORT).show();
                     storageReference.putFile(ImageUri).continueWithTask(new Continuation() {
                         @Override
                         public Object then(@NonNull Task task) throws Exception {
@@ -132,13 +127,15 @@ public class Addpicture extends AppCompatActivity {
                                 dialog.dismiss();
                                 Uri uri = task.getResult();
                                 url = uri.toString();
-                                final String pictg = pictureTag.getText().toString().toUpperCase();
-                                final String picdet= pictureDetails.getText().toString();
+                                final String pictg = buyTag.getText().toString().toUpperCase();
+                                final String picdet= buyDetails.getText().toString();
+                                final String proname= buyname.getText().toString();
 
-                                DocumentReference documentReference = fstorepicture.collection("PICTURE").document();
+                                DocumentReference documentReference = fstorebuy.collection("BUYSELLPOSTS").document();
                                 Map<String, Object> pdf = new HashMap<>();
                                 pdf.put("Details", picdet);
                                 pdf.put("Tag", pictg);
+                                pdf.put("ProductName",proname);
                                 pdf.put("Username", name);
                                 pdf.put("UserID", uid);
                                 pdf.put("Downloadlink", url);
@@ -149,15 +146,15 @@ public class Addpicture extends AppCompatActivity {
                                         Log.d(TAG, "onSuccess: post added");
                                     }
                                 });
-                                Toast.makeText(Addpicture.this, "Uploaded Successfully ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Addbuypost.this, "Uploaded Successfully ", Toast.LENGTH_SHORT).show();
                             } else {
                                 dialog.dismiss();
-                                Toast.makeText(Addpicture.this, "UploadedFailed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Addbuypost.this, "UploadedFailed", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 }
-                startActivity(new Intent(getApplicationContext(), Allpicture.class));
+                startActivity(new Intent(getApplicationContext(), Allbuypost.class));
             }
         });
 

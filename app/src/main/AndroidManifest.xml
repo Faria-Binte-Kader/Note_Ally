@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteAlly">
+        <activity android:name=".Addbuypost"></activity>
+        <activity android:name=".Addrentpost"/>
+        <activity android:name=".Allrentpost" />
+        <activity android:name=".Allbuypost" />
         <activity android:name=".FindTags" />
         <activity android:name=".ViewNote" />
         <activity android:name=".Addpicture" />
