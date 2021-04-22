@@ -80,12 +80,12 @@
 
             <ImageView
                 android:id="@+id/pictureview2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
                 />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="120dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp">
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:elevation="7dp"
-                android:text="save" />
+                android:text="save photo" />
         </LinearLayout>
 
     </LinearLayout>

@@ -44,7 +44,26 @@ public class PictureAdapter extends RecyclerView.Adapter<Viewholderpicture>{
         String imguri=null;
         imguri=modelpictures.get(position).getDownloadlink();
         Picasso.get().load(imguri).into(holder.pictureview);
+        holder.save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                downloadFile(holder.picturename.getContext(),modelpictures.get(position).getdetails(),".jpg",DIRECTORY_DOWNLOADS,modelpictures.get(position).getDownloadlink());
+            }
+        });
 
+    }
+
+    public void downloadFile(Context context, String fileName, String fileExtension, String destinationDirectory, String url) {
+
+        DownloadManager downloadmanager = (DownloadManager) context.
+                getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(url);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalFilesDir(context, destinationDirectory, fileName + fileExtension);
+
+        downloadmanager.enqueue(request);
     }
 
 
