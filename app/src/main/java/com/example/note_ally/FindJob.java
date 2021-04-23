@@ -10,28 +10,57 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FindJob extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     androidx.recyclerview.widget.RecyclerView RecyclerView;
     FirebaseFirestore fstoreJob;
+    FirebaseAuth fauthJob;
     ArrayList<Job> jobArrayList;
     JobAdapter adapter;
 
     String TAG = "TAG FindJob";
+
+    String uid,pid;
+
+    public void reportItem(int position) {
+
+        final String id = jobArrayList.get(position).getPostID();
+        uid = fauthJob.getCurrentUser().getUid();
+
+        DocumentReference documentReference2 = fstoreJob.collection("ReportedPost").document(id);
+        Map<String, Object> report = new HashMap<>();
+        report.put("Type", "Job");
+        report.put("UserID", uid);
+
+        documentReference2.set(report).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG, "onSuccess: report added");
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,12 +118,24 @@ public class FindJob extends AppCompatActivity implements AdapterView.OnItemSele
                                     position = querySnapshot.getString("Position");
                                     details = querySnapshot.getString("Details");
                                     tag = querySnapshot.getString("Tag");
+                                    pid = querySnapshot.getString("PostID");
 
-                                    Job job = new Job(company,position,details,tag);
+                                    Job job = new Job(company,position,details,tag,pid);
                                     jobArrayList.add(job);
                                 }
                                 adapter = new JobAdapter(FindJob.this, jobArrayList);
                                 RecyclerView.setAdapter(adapter);
+                                adapter.setOnItemClickListener(new JobAdapter.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(int position) {
+
+                                    }
+
+                                    @Override
+                                    public void onReportClick(int position) {
+                                        reportItem(position);
+                                    }
+                                });
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -129,12 +170,24 @@ public class FindJob extends AppCompatActivity implements AdapterView.OnItemSele
                             position = querySnapshot.getString("Position");
                             details = querySnapshot.getString("Details");
                             tag = querySnapshot.getString("Tag");
+                            pid = querySnapshot.getString("PostID");
 
-                            Job job = new Job(company,position,details,tag);
+                            Job job = new Job(company,position,details,tag,pid);
                             jobArrayList.add(job);
                         }
                         adapter = new JobAdapter(FindJob.this, jobArrayList);
                         RecyclerView.setAdapter(adapter);
+                        adapter.setOnItemClickListener(new JobAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+
+                            }
+
+                            @Override
+                            public void onReportClick(int position) {
+                                reportItem(position);
+                            }
+                        });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

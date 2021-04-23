@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,6 +30,22 @@ public class ViewNote extends AppCompatActivity implements AdapterView.OnItemSel
     FirebaseFirestore fstoreNote;
     ArrayList<Notes> notesArrayList;
     NotesAdapter adapter;
+
+    public void removeItem(int position) {
+
+        final String id= notesArrayList.get(position).getPostID();
+        fstoreNote.collection("Note").document(id)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG","Success");
+                    }
+                });
+
+        notesArrayList.remove(position);
+        adapter.notifyItemRemoved(position);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +68,30 @@ public class ViewNote extends AppCompatActivity implements AdapterView.OnItemSel
         fstoreNote.collection("Note")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    String title, details;
+                    String title, details,pid;
 
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (DocumentSnapshot querySnapshot : task.getResult()) {
                             title = querySnapshot.getString("Title");
                             details = querySnapshot.getString("Details");
+                            pid = querySnapshot.getString("PostID");
 
-                            Notes notes = new Notes(title,details);
+                            Notes notes = new Notes(title,details,pid);
                             notesArrayList.add(notes);
                         }
                         adapter = new NotesAdapter(ViewNote.this, notesArrayList);
                         RecyclerView.setAdapter(adapter);
+                        adapter.setOnItemClickListener(new NotesAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+
+                            }
+                            @Override
+                            public void onDeleteClick(int position) {
+                                removeItem(position);
+                            }
+                        });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

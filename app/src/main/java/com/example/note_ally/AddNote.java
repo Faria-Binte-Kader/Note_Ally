@@ -51,6 +51,7 @@ public class AddNote extends AppCompatActivity implements AdapterView.OnItemSele
                 Map<String, Object> note = new HashMap<>();
                 note.put("Title", notetitle);
                 note.put("Details", notedetails);
+                note.put("PostID",documentReference.getId());
 
                 documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

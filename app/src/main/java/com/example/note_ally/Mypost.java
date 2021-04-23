@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +41,32 @@ public class Mypost extends AppCompatActivity implements View.OnClickListener{
     FirebaseAuth fAuthpost;
 
     String TAG = "TAG mypost";
+
+    public void removeItem(int position) {
+
+        final String id= mypostArrayList.get(position).getPostID();
+        fstorepost.collection("FeedPost").document(id)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG","Success");
+                    }
+                });
+
+        fstorepost.collection("ReportedPost").document(id)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG","Success");
+                    }
+                });
+
+        mypostArrayList.remove(position);
+        adapter.notifyItemRemoved(position);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +83,6 @@ public class Mypost extends AppCompatActivity implements View.OnClickListener{
         fAuthpost = FirebaseAuth.getInstance();
         fstorepost = FirebaseFirestore.getInstance();
         uid = fAuthpost.getCurrentUser().getUid();
-
 
         //loadDataFromFirebase();
         searchDataInFirebase();
@@ -87,6 +113,16 @@ public class Mypost extends AppCompatActivity implements View.OnClickListener{
                                 }
                                 adapter = new MypostAdapter(Mypost.this, mypostArrayList);
                                 RecyclerView.setAdapter(adapter);
+                                adapter.setOnItemClickListener(new MypostAdapter.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(int position) {
+
+                                    }
+                                    @Override
+                                    public void onDeleteClick(int position) {
+                                        removeItem(position);
+                                    }
+                                });
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -122,6 +158,16 @@ public class Mypost extends AppCompatActivity implements View.OnClickListener{
                         }
                         adapter = new MypostAdapter(Mypost.this, mypostArrayList);
                         RecyclerView.setAdapter(adapter);
+                        adapter.setOnItemClickListener(new MypostAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+
+                            }
+                            @Override
+                            public void onDeleteClick(int position) {
+                                removeItem(position);
+                            }
+                        });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

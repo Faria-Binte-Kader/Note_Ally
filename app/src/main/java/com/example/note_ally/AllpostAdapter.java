@@ -27,6 +27,16 @@ public class AllpostAdapter extends RecyclerView.Adapter<ViewHolderAllPost> {
     Allpost allpost;
     ArrayList<Feedpost> allpostArrayList;
 
+    private AllpostAdapter.OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+        void onReportClick(int position);
+    }
+
+    public void setOnItemClickListener(AllpostAdapter.OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     public AllpostAdapter(Allpost allpost, ArrayList<Feedpost> allpostArrayList) {
         this.allpost= allpost;
@@ -39,7 +49,7 @@ public class AllpostAdapter extends RecyclerView.Adapter<ViewHolderAllPost> {
 
         LayoutInflater layoutInflater= LayoutInflater.from(allpost.getBaseContext());
         View view= layoutInflater.inflate(R.layout.allpostlist,parent,false);
-        return new ViewHolderAllPost(view);
+        return new ViewHolderAllPost(view,mListener);
     }
 
 

@@ -15,6 +15,17 @@ public class NotesAdapter extends RecyclerView.Adapter<ViewHolderNotes> implemen
     ViewNote viewNote;
     ArrayList<Notes> notesArrayList;
 
+    private NotesAdapter.OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+        void onDeleteClick(int position);
+    }
+
+    public void setOnItemClickListener(NotesAdapter.OnItemClickListener listener) {
+        mListener = listener;
+    }
+
     public NotesAdapter(ViewNote viewNote, ArrayList<Notes> notesArrayList) {
         this.viewNote = viewNote;
         this.notesArrayList = notesArrayList;
@@ -25,7 +36,7 @@ public class NotesAdapter extends RecyclerView.Adapter<ViewHolderNotes> implemen
     public ViewHolderNotes onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(viewNote.getBaseContext());
         View view = layoutInflater.inflate(R.layout.notes_list, parent, false);
-        return new ViewHolderNotes(view);
+        return new ViewHolderNotes(view,mListener);
     }
 
     @Override

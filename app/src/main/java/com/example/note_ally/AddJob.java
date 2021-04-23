@@ -58,6 +58,7 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                 job.put("Position", jobposition);
                 job.put("Details", jobdetails);
                 job.put("Tag", jobtag);
+                job.put("PostID",documentReference.getId());
 
                 DocumentReference documentReference2 = fstoreJob.collection("JobTags").document();
                 Map<String, Object> tag = new HashMap<>();

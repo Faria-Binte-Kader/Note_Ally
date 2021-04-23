@@ -1,6 +1,7 @@
 package com.example.note_ally;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -13,13 +14,20 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Allpost extends AppCompatActivity {
 
@@ -29,13 +37,46 @@ public class Allpost extends AppCompatActivity {
     AllpostAdapter adapter;
     String s;
 
-    String uid;
+    String uid, puid;
 
     FirebaseAuth fAuthpost;
 
     String TAG = "TAG allpost";
 
     public static final String EXTRA_TEXT1 = "com.example.application.example.EXTRA_TEXT1_Allpost";
+
+    public void reportItem(int position) {
+
+        final String id= allpostArrayList.get(position).getPostID();
+        uid = fAuthpost.getCurrentUser().getUid();
+
+        DocumentReference documentReference = fstorepost.collection("FeedPost").document(id);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (value != null) {
+                    puid = value.getString("UserID");
+
+                    if(uid!=puid) {
+
+                        DocumentReference documentReference2 = fstorepost.collection("ReportedPost").document(id);
+                        Map<String, Object> report = new HashMap<>();
+                        report.put("Type", "Post");
+                        report.put("UserID", uid);
+
+                        documentReference2.set(report).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "onSuccess: report added");
+                            }
+                        });
+                    }
+
+                }
+            }
+        });
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +131,17 @@ public class Allpost extends AppCompatActivity {
                                 }
                                 adapter = new AllpostAdapter(Allpost.this, allpostArrayList);
                                 RecyclerView.setAdapter(adapter);
+                                adapter.setOnItemClickListener(new AllpostAdapter.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(int position) {
+
+                                    }
+
+                                    @Override
+                                    public void onReportClick(int position) {
+                                        reportItem(position);
+                                    }
+                                });
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -134,6 +186,17 @@ public class Allpost extends AppCompatActivity {
                         }
                         adapter = new AllpostAdapter(Allpost.this, allpostArrayList);
                         RecyclerView.setAdapter(adapter);
+                        adapter.setOnItemClickListener(new AllpostAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+
+                            }
+
+                            @Override
+                            public void onReportClick(int position) {
+                                reportItem(position);
+                            }
+                        });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
