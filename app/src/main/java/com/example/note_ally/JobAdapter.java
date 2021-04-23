@@ -15,17 +15,6 @@ public class JobAdapter extends RecyclerView.Adapter<ViewHolderJob> implements A
     FindJob findJob;
     ArrayList<Job> jobArrayList;
 
-    private JobAdapter.OnItemClickListener mListener;
-
-    public interface OnItemClickListener {
-        void onItemClick(int position);
-        void onReportClick(int position);
-    }
-
-    public void setOnItemClickListener(JobAdapter.OnItemClickListener listener) {
-        mListener = listener;
-    }
-
     public JobAdapter(FindJob findJob, ArrayList<Job> jobArrayList) {
         this.findJob = findJob;
         this.jobArrayList = jobArrayList;
@@ -36,7 +25,7 @@ public class JobAdapter extends RecyclerView.Adapter<ViewHolderJob> implements A
     public ViewHolderJob onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(findJob.getBaseContext());
         View view = layoutInflater.inflate(R.layout.job_list, parent, false);
-        return new ViewHolderJob(view,mListener);
+        return new ViewHolderJob(view);
     }
 
     @Override

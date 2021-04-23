@@ -6,17 +6,15 @@ public class Job {
     private String Position;
     private String Details;
     private String Tag;
-    private String postID;
 
     public Job() {
     }
 
-    public Job(String com, String pos, String det, String tag, String pid) {
+    public Job(String com, String pos, String det, String tag) {
         Company = com;
         Position = pos;
         Details = det;
         Tag = tag;
-        postID = pid;
     }
 
     public String getCompany() {
@@ -49,14 +47,6 @@ public class Job {
 
     public void setTag(String tag) {
         Tag = tag;
-    }
-
-    public String getPostID() {
-        return postID;
-    }
-
-    public void setPostID(String pid) {
-        postID = pid;
     }
 
 }
