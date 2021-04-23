@@ -23,7 +23,7 @@
             android:background="@drawable/background_right_message_activity"
             android:text="hello"
             android:layout_alignParentEnd="true"
-            android:id="@+id/show_message_chat_right"
+            android:id="@+id/show_message"
             android:textSize="18dp"
             android:textColor="@color/blue_700"
             android:padding="8dp"

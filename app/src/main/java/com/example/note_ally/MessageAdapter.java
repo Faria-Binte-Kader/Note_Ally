@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+//import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -53,6 +53,7 @@ public class MessageAdapter extends RecyclerView.Adapter<ViewHolderMessage> {
             return new ViewHolderMessage(view);
         } else {
             LayoutInflater layoutInflater = LayoutInflater.from(messageActivity.getBaseContext());
+            //View view = layoutInflater.inflate(R.layout.chat_item_left, parent, false);
             View view = layoutInflater.inflate(R.layout.chat_item_left, parent, false);
             Log.v("TAG ---I---onComplete", String.valueOf(MSG_TYPE_LEFT));
             return new ViewHolderMessage(view);
@@ -61,7 +62,8 @@ public class MessageAdapter extends RecyclerView.Adapter<ViewHolderMessage> {
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolderMessage holder, final int position) {
-        holder.show_msg.setText(messageArrayList.get(position).getMsg());
+        if(holder.show_msg.getText()!=null)
+        {holder.show_msg.setText(messageArrayList.get(position).getMsg());}
     }
 
     /*
@@ -87,7 +89,7 @@ public class MessageAdapter extends RecyclerView.Adapter<ViewHolderMessage> {
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
-        fUser = fAuth.getCurrentUser().getUid().toString();
+        fUser = fAuth.getCurrentUser().getUid();
         if (messageArrayList.get(position).getSender().equals(fUser)) {
             return MSG_TYPE_RIGHT;
         } else {

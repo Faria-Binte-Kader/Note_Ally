@@ -14,7 +14,7 @@ public class ViewHolderMessage extends RecyclerView.ViewHolder {
 
     public ViewHolderMessage(@NonNull View itemView) {
         super(itemView);
-        show_msg = itemView.findViewById(R.id.textView_messageList);
+        show_msg = itemView.findViewById(R.id.show_message);
         //profile_image = itemView.findViewById(R.id.imageView_messageList);
     }
 }

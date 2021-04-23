@@ -75,7 +75,7 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar_messageActivity);
+       Toolbar toolbar = findViewById(R.id.toolbar_messageActivity);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -133,8 +133,7 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
 
     private void readMessage(String myid,String userid){
         Log.v("TAG ---I---",myid);
-        if(messageArrayList.size()>0)
-            messageArrayList.clear();
+
         fStore.collection("Chats")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -142,6 +141,8 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
 
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(messageArrayList.size()>0)
+                            messageArrayList.clear();
                         Log.v("TAG ---I---onComplete1",myid);
                         for(DocumentSnapshot querySnapshot:task.getResult()){
                             sender=querySnapshot.getString("Sender");
@@ -150,8 +151,8 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
 
                             Log.v("TAG ---I---onComplete",myid);
                             Message message = new Message(sender,receiver,msg);
-                            if(message.getReceiver().equals(myid) && message.getSender().equals(userid)||
-                            message.getReceiver().equals(userid) && message.getSender().equals(myid)){
+                            if((message.getReceiver().equals(myid) && message.getSender().equals(userid))||
+                                    (message.getReceiver().equals(userid) && message.getSender().equals(myid))){
                                messageArrayList.add(message);
                             }
                         }
@@ -179,8 +180,8 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
 
     }
 
-    /*
-    private void readMessage(String myid,String userid,String imageurl){
+
+   /* private void readMessage(String myid,String userid,String imageurl){
         messageArrayList=new ArrayList<>();
 
         if(messageArrayList.size()>0) messageArrayList.clear();
@@ -214,6 +215,6 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
                         Log.v("---I---", e.getMessage());
                     }
                 });
-    }
-     */
+    }*/
+
 }
