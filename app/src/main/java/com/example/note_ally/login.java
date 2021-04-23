@@ -30,7 +30,6 @@ public class login extends AppCompatActivity implements AdapterView.OnItemSelect
     Button loginBtn;
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
-    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,6 @@ public class login extends AppCompatActivity implements AdapterView.OnItemSelect
             documentReference2.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                    String type = new String();
                     if (value != null)
                         startActivity(new Intent(login.this, MainActivity.class));
                 }
@@ -81,17 +79,7 @@ public class login extends AppCompatActivity implements AdapterView.OnItemSelect
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                userId = fAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fstore.collection("Usertype").document(userId);
-                                documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                                        String type = new String();
-                                        if (value != null)
-                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                        finish();
-                                    }
-                                });
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             } else {
                                 Toast.makeText(login.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }

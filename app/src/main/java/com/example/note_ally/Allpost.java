@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +34,9 @@ public class Allpost extends AppCompatActivity {
     FirebaseAuth fAuthpost;
 
     String TAG = "TAG allpost";
+
+    public static final String EXTRA_TEXT1 = "com.example.application.example.EXTRA_TEXT1_Allpost";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,5 +143,12 @@ public class Allpost extends AppCompatActivity {
                         Log.v("---I---", e.getMessage());
                     }
                 });
+    }
+
+    public void chat(String s) {
+        Intent intent = new Intent(Allpost.this, MessageActivity.class);
+        intent.putExtra(EXTRA_TEXT1, s);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

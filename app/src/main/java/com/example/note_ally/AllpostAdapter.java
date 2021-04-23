@@ -1,5 +1,7 @@
 package com.example.note_ally;
 
+import android.content.Intent;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -96,6 +98,14 @@ public class AllpostAdapter extends RecyclerView.Adapter<ViewHolderAllPost> {
                         });
             }
         });*/
+
+        holder.chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = allpostArrayList.get(position).getUserId();
+                allpost.chat(message);
+            }
+        });
 
     }
 
