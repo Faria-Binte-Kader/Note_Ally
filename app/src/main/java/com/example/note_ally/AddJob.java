@@ -34,9 +34,10 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
 
     public static final String TAG = "TAG AddJob";
     Button addJobBtn;
-    String id,cnt= "";
+    String id,cnt;
 
     FirebaseFirestore fstoreJob;
+    FirebaseAuth fauthJob;
 
     private EditText jobCompany, jobPosition, jobDetails, jobTag;
 
@@ -52,6 +53,7 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
         jobTag = findViewById(R.id.addJobTag);
 
         fstoreJob = FirebaseFirestore.getInstance();
+        fauthJob = FirebaseAuth.getInstance();
 
         addJobBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +91,7 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                                             if (task.isSuccessful()) {
                                                 DocumentSnapshot doc = task.getResult();
                                                 if (doc.exists()) {
-                                                    cnt = cnt + doc.getString("Count");
+                                                    cnt = doc.getString("Count");
                                                     int temp = Integer.parseInt(cnt) + 1;
                                                     cnt = String.valueOf(temp);
 
@@ -111,6 +113,7 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                                                     notif.put("Details", jobdetails);
                                                     notif.put("Tag", jobtag);
                                                     notif.put("PostID",documentReference.getId());
+                                                    notif.put("UserID",fauthJob.getCurrentUser().getUid());
                                                     notif.put("Serial",cnt);
 
                                                     documentReference3.set(notif).addOnSuccessListener(new OnSuccessListener<Void>() {

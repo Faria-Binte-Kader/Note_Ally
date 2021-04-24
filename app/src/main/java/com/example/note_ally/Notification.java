@@ -62,7 +62,7 @@ public class Notification extends AppCompatActivity implements AdapterView.OnIte
                 .orderBy("Serial", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    String company, position, details;
+                    String company, position, details, UserID;
 
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -70,9 +70,12 @@ public class Notification extends AppCompatActivity implements AdapterView.OnIte
                             company = querySnapshot.getString("Company");
                             position = querySnapshot.getString("Position");
                             details = querySnapshot.getString("Details");
+                            UserID = querySnapshot.getString("UserID");
 
-                            JobNotification jobNotification = new JobNotification(company,position,details);
-                            jobNotificationArrayList.add(jobNotification);
+                            if(!UserID.equals(uid)) {
+                                JobNotification jobNotification = new JobNotification(company, position, details);
+                                jobNotificationArrayList.add(jobNotification);
+                            }
                         }
                         adapter = new JobNotificationAdapter(Notification.this, jobNotificationArrayList);
                         RecyclerView.setAdapter(adapter);

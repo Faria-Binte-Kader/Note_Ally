@@ -70,17 +70,6 @@ public class TagsAdapter extends RecyclerView.Adapter<ViewHolderTags> {
                 usertag.put("Jobtag", tagname);
                 usertag.put("UserID", userIDtag);
 
-                DocumentReference documentReference4 = fStoretag.collection("NotificationCount").document(userIDtag);
-                Map<String, Object> count = new HashMap<>();
-                count.put("Count", "0");
-
-                documentReference4.set(count).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-
-                    }
-                });
-
                 documentReference.set(usertag).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

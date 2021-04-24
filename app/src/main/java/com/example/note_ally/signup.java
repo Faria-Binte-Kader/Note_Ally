@@ -107,6 +107,17 @@ public class signup extends AppCompatActivity implements AdapterView.OnItemSelec
                                 }
                             });
 
+                            DocumentReference documentReference4 = fstore.collection("NotificationCount").document(userId);
+                            Map<String, Object> count = new HashMap<>();
+                            count.put("Count", "0");
+
+                            documentReference4.set(count).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                }
+                            });
+
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
                             Toast.makeText(signup.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
