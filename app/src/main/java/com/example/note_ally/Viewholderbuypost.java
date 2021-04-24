@@ -13,7 +13,7 @@ public class Viewholderbuypost extends RecyclerView.ViewHolder{
     TextView productname, username;
     ImageView pictureview;
     TextView details;
-    Button save;
+    ImageView save,chat;
 
     public Viewholderbuypost(@NonNull View itemView) {
         super(itemView);
@@ -22,6 +22,7 @@ public class Viewholderbuypost extends RecyclerView.ViewHolder{
         details=itemView.findViewById(R.id.detailsbuy);
         pictureview=itemView.findViewById(R.id.pictureview1);
         save = itemView.findViewById(R.id.downloadpicture1);
+        chat = itemView.findViewById(R.id.buypostchat);
 
 
     }

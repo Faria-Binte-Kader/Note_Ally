@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:elevation="7dp"
-                android:text="save photo" />
+                android:text="save tag" />
         </LinearLayout>
 
 

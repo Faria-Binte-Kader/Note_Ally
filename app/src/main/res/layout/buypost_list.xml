@@ -85,19 +85,23 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <Button
-                android:id="@+id/downloadpicture1"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".25"
-                android:elevation="7dp"
-                android:text="save photo" />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_chat"
+                android:id="@+id/buypostchat"/>
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_save"
+                android:id="@+id/downloadpicture1"/>
         </LinearLayout>
+
 
     </LinearLayout>
 

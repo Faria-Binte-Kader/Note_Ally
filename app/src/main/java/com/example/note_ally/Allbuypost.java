@@ -29,6 +29,7 @@ public class Allbuypost extends AppCompatActivity implements View.OnClickListene
     BuypostAdapter adapter;
 
     FirebaseAuth fAuthbuy;
+    public static final String EXTRA_TEXT1 = "com.example.application.example.EXTRA_TEXT1_Allpost";
 
     String TAG = "TAG allbuypost";
 
@@ -151,5 +152,12 @@ public class Allbuypost extends AppCompatActivity implements View.OnClickListene
                 break;
         }
 
+    }
+
+    public void chat(String s) {
+        Intent intent = new Intent(Allbuypost.this, MessageActivity.class);
+        intent.putExtra(EXTRA_TEXT1, s);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
     }

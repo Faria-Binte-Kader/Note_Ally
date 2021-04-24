@@ -51,6 +51,13 @@ public class BuypostAdapter extends RecyclerView.Adapter<Viewholderbuypost>{
                 downloadFile(holder.productname.getContext(),modelpictures.get(position).getdetails(),".jpg",DIRECTORY_DOWNLOADS,modelpictures.get(position).getDownloadlink());
             }
         });
+        holder.chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = modelpictures.get(position).getUserId();
+                allbuypost.chat(message);
+            }
+        });
     }
 
     public void downloadFile(Context context, String fileName, String fileExtension, String destinationDirectory, String url) {
