@@ -18,10 +18,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gray"
+            android:background="@color/blue_700"
             android:padding="10dp"
             android:text="Insert Event Details"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"/>
 
@@ -30,19 +30,19 @@
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:textColorHint="@color/white">
+            android:textColorHint="@color/blue_700">
 
             <EditText
                 android:id="@+id/addEventOrganizer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/gray"
+                android:background="@color/blue_100"
                 android:ems="10"
                 android:hint="Organizer"
                 android:inputType="text"
                 android:padding="10dp"
-                android:textColorHint="@color/black"
+                android:textColorHint="@color/blue_700"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -52,20 +52,20 @@
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:textColorHint="@color/white">
+            android:textColorHint="@color/blue_700">
 
             <EditText
                 android:id="@+id/addEventLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/gray"
+                android:background="@color/blue_100"
                 android:ems="10"
                 android:hint="Location"
                 android:inputType="text"
                 android:padding="10dp"
-                android:textColorHint="@color/black"
-                android:textColor="@color/black"
+                android:textColorHint="@color/blue_700"
+                android:textColor="@color/blue_700"
                 android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,14 +74,14 @@
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:textColorHint="@color/white">
+            android:textColorHint="@color/blue_700">
 
             <EditText
                 android:id="@+id/addEventDetails"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/gray"
+                android:background="@color/blue_100"
                 android:ems="10"
                 android:hint="Details"
                 android:gravity="top"
@@ -97,14 +97,14 @@
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:textColorHint="@color/white">
+            android:textColorHint="@color/blue_700">
 
             <EditText
                 android:id="@+id/addEventTag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/gray"
+                android:background="@color/blue_100"
                 android:ems="10"
                 android:hint="Tag"
                 android:inputType="text"
@@ -121,7 +121,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
-        android:background="@drawable/button_rounded"
+        android:background="@drawable/button_rounded2"
         android:text="ADD EVENT"
         android:textColor="@color/white"
         android:textSize="22sp"/>

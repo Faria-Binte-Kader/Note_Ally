@@ -18,10 +18,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gray"
+            android:background="@color/blue_700"
             android:padding="10dp"
             android:text="Insert Admission Notice Details"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"/>
 
@@ -30,14 +30,14 @@
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:textColorHint="@color/white">
+            android:textColorHint="@color/blue_700">
 
             <EditText
                 android:id="@+id/addNoticeInstitution"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/gray"
+                android:background="@color/blue_100"
                 android:ems="10"
                 android:hint="Institution"
                 android:inputType="text"
@@ -52,14 +52,14 @@
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:textColorHint="@color/white">
+            android:textColorHint="@color/blue_700">
 
             <EditText
                 android:id="@+id/addNoticeDetails"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/gray"
+                android:background="@color/blue_100"
                 android:ems="10"
                 android:hint="Details"
                 android:gravity="top"
@@ -75,14 +75,14 @@
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:textColorHint="@color/white">
+            android:textColorHint="@color/blue_700">
 
             <EditText
                 android:id="@+id/addNoticeTag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/gray"
+                android:background="@color/blue_100"
                 android:ems="10"
                 android:hint="Tag"
                 android:inputType="text"
@@ -99,7 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
-        android:background="@drawable/button_rounded"
+        android:background="@drawable/button_rounded2"
         android:text="ADD NOTICE"
         android:textColor="@color/white"
         android:textSize="22sp"/>
