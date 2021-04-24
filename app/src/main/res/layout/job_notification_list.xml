@@ -75,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:textIsSelectable="true"
                 android:textColor="@color/blue_700"
                 />
         </LinearLayout>
