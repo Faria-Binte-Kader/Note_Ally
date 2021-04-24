@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="9"
-    android:background="@color/white">
+    android:background="@color/blue_100">
 
     <SearchView
         android:id="@+id/searchjob"
@@ -15,16 +15,20 @@
         android:padding="10dp"
         android:queryHint="Search"
         android:layout_margin="5dp"
-        android:background="@color/gray"/>
+        android:background="@color/white"/>
 
     <Button
         android:id="@+id/job_tag_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:text="tags"
-        android:textColor="@color/black"
-        android:textSize="22sp"/>
+        android:text="AVAILABLE TAGS"
+        android:textColor="@color/blue_700"
+        android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@color/white"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/jobsRecycle"
