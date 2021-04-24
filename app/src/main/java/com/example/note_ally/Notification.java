@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ public class Notification extends AppCompatActivity implements AdapterView.OnIte
         if (jobNotificationArrayList.size() > 0)
             jobNotificationArrayList.clear();
         fstoreNotification.collection("Notifications").document(uid).collection("Notifs")
-                .orderBy("Serial")
+                .orderBy("Serial", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     String company, position, details;

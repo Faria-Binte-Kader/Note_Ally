@@ -74,24 +74,13 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                 tag.put("Tagname", jobtag);
 
                 fstoreJob.collection("UserTags")
-                        .whereEqualTo("Jobag", jobtag.toUpperCase())
+                        .whereEqualTo("Jobtag", jobtag.toUpperCase())
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 for (DocumentSnapshot querySnapshot : task.getResult()) {
                                     id = querySnapshot.getString("UserID");
-
-                                    DocumentReference documentReference4 = fstoreJob.collection("NotificationCount").document(id);
-                                    Map<String, Object> count = new HashMap<>();
-                                    count.put("Count", FieldValue.increment(1));
-
-                                    documentReference4.set(count).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            Log.d(TAG, "onSuccess: notification count added");
-                                        }
-                                    });
 
                                     DocumentReference docRef = fstoreJob.collection("NotificationCount").document(id);
                                     docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -101,6 +90,20 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                                                 DocumentSnapshot doc = task.getResult();
                                                 if (doc.exists()) {
                                                     cnt = cnt + doc.getString("Count");
+                                                    int temp = Integer.parseInt(cnt) + 1;
+                                                    cnt = String.valueOf(temp);
+
+                                                    DocumentReference documentReference4 = fstoreJob.collection("NotificationCount").document(id);
+                                                    Map<String, Object> count = new HashMap<>();
+                                                    count.put("Count", cnt);
+
+                                                    documentReference4.set(count).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            Log.d(TAG, "onSuccess: notification count added");
+                                                        }
+                                                    });
+
                                                     DocumentReference documentReference3 = fstoreJob.collection("Notifications").document(id).collection("Notifs").document();
                                                     Map<String, Object> notif = new HashMap<>();
                                                     notif.put("Company", jobcompany);
