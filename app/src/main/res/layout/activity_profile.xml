@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PERSONAL DETAILS"
-            android:textColor="@color/blue_400"
+            android:textColor="@color/blue_700"
             android:gravity="center_horizontal"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -35,8 +35,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@drawable/text_rounded"
-            android:backgroundTint="@color/blue_400"
+            android:background="@drawable/button_rounded"
+            android:backgroundTint="@color/blue_100"
             android:padding="30dp"
             android:layout_marginTop="30dp"
             >
@@ -50,9 +50,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name: "
-
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_700"
                     />
                 <TextView
                     android:id="@+id/username"
@@ -60,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_700"
                     />
             </LinearLayout>
 
@@ -74,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:text="Email: "
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_700"
                     />
                 <TextView
                     android:id="@+id/useremail"
@@ -82,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_700"
                     />
             </LinearLayout>
 
@@ -96,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:text="Gender: "
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_700"
                     />
                 <TextView
                     android:id="@+id/usergender"
@@ -104,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_700"
                     />
             </LinearLayout>
 
@@ -118,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:text="Description: "
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_700"
                     />
                 <TextView
                     android:id="@+id/userdescription"
@@ -126,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_700"
                     />
             </LinearLayout>
 
@@ -140,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:text="Date of Birth: "
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_700"
                     />
                 <TextView
                     android:id="@+id/userdob"
@@ -148,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_700"
                     />
             </LinearLayout>
 
@@ -162,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:text="Contact no: "
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_700"
                     />
                 <TextView
                     android:id="@+id/userphone"
@@ -170,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_700"
                     />
             </LinearLayout>
 
@@ -185,7 +184,7 @@
             android:textColor="@color/white"
             android:layout_marginTop="20sp"
             android:padding="10dp"
-            android:background="@drawable/button_rounded"
+            android:background="@drawable/button_rounded2"
             />
 
     </LinearLayout>

@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardElevation="5dp"
-    app:cardBackgroundColor="@color/gray"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="3dp"
     app:cardUseCompatPadding="true"
     >
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
         </LinearLayout>
 
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Product Name: "
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
             <TextView
                 android:id="@+id/productnamerent"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
         </LinearLayout>
 
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Details: "
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
             <TextView
                 android:id="@+id/detailsrent"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
         </LinearLayout>
 
@@ -93,12 +93,12 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_chat"
+                android:src="@drawable/ic_chat2"
                 android:id="@+id/rentpostchat"/>
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_save"
+                android:src="@drawable/ic_save2"
                 android:id="@+id/downloadpicture2"/>
         </LinearLayout>
 

@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardElevation="5dp"
-    app:cardBackgroundColor="@color/gray"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="3dp"
     app:cardUseCompatPadding="true"
     >
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
         </LinearLayout>
         <LinearLayout
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
         </LinearLayout>
         <LinearLayout
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
         </LinearLayout>
 
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="download link: "
-            android:textColor="@color/black"
+            android:textColor="@color/blue_700"
             />
             <TextView
                 android:id="@+id/pdfdownloadlink"
@@ -81,13 +81,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
 
         <Button
             android:id="@+id/downloadpdf"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_rounded2"
+            android:textColor="@color/white"
             android:layout_weight=".25"
             android:elevation="7dp"
             android:text="Download" />

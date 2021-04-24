@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardElevation="5dp"
-    app:cardBackgroundColor="@color/gray"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="3dp"
     app:cardUseCompatPadding="true">
 
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
         </LinearLayout>
 
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
         </LinearLayout>
 
@@ -54,28 +54,32 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_delete"
+                android:src="@drawable/ic_delete2"
                 android:id="@+id/postdelete"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:id="@+id/postlikenumber"/>
+                android:id="@+id/postlikenumber"
+                android:visibility="invisible"/>
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_like"
-                android:id="@+id/mypostlike"/>
+                android:id="@+id/mypostlike"
+                android:visibility="invisible"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:id="@+id/postdislikenumber"/>
+                android:id="@+id/postdislikenumber"
+                android:visibility="invisible"/>
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_dislike"
-                android:id="@+id/mypostdislike"/>
+                android:id="@+id/mypostdislike"
+                android:visibility="invisible"/>
 
         </LinearLayout>
 

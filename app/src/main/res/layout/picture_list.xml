@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardElevation="5dp"
-    app:cardBackgroundColor="@color/gray"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="3dp"
     app:cardUseCompatPadding="true"
     >
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
         </LinearLayout>
 
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/blue_700"
                 />
         </LinearLayout>
 
@@ -71,7 +71,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:elevation="7dp"
-                android:text="save photo" />
+                android:text="save photo"
+                android:background="@drawable/button_rounded2"
+                android:textColor="@color/white"/>
         </LinearLayout>
 
     </LinearLayout>
