@@ -29,7 +29,7 @@ public class Allbuypost extends AppCompatActivity implements View.OnClickListene
     BuypostAdapter adapter;
 
     FirebaseAuth fAuthbuy;
-    public static final String EXTRA_TEXT1 = "com.example.application.example.EXTRA_TEXT1_Allpost";
+    public static final String EXTRA_TEXT1 = "com.example.application.example.EXTRA_TEXT1";
 
     String TAG = "TAG allbuypost";
 

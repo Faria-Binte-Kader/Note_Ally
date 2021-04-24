@@ -27,7 +27,7 @@ public class Allrentpost extends AppCompatActivity implements View.OnClickListen
     FirebaseFirestore fstorebuy;
     ArrayList<Buypost> allbuyArrayList;
     RentpostAdapter adapter;
-    public static final String EXTRA_TEXT1 = "com.example.application.example.EXTRA_TEXT1_Allpost";
+    public static final String EXTRA_TEXT1 = "com.example.application.example.EXTRA_TEXT1";
 
     FirebaseAuth fAuthbuy;
 
