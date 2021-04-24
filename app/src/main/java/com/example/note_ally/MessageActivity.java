@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -89,7 +90,7 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
         intent = getIntent();
         String userid = intent.getStringExtra(Allpost.EXTRA_TEXT1);
 
-        fUser = fAuth.getCurrentUser().getUid().toString();
+        fUser = fAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fStore.collection("User").document(userid);
 
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -118,6 +119,56 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
     }
 
     private void sendMessage(String sender, String receiver, String message) {
+        fUser = fAuth.getCurrentUser().getUid();
+        intent = getIntent();
+        String userid = intent.getStringExtra(Allpost.EXTRA_TEXT1);
+        final String[] usernameuserid = new String[1];
+        DocumentReference documentReferenceUserid = fStore.collection("User").document(userid);
+
+        documentReferenceUserid.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (value != null) {
+                    usernameuserid[0] = value.getString("Name");
+                    Log.d("TAG MessageActivity","username"+ usernameuserid[0]);
+
+                    DocumentReference documentReference1 = fStore.collection("ChatList").document(fAuth.getUid()).collection(fAuth.getUid()).document(userid);
+                    Map<String,Object> recentChattedUser = new HashMap<>();
+                    recentChattedUser.put("id",userid);
+                    recentChattedUser.put("Name", usernameuserid[0]);
+                    documentReference1.set(recentChattedUser).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("TAG MessageActivity", "onSuccess: Recent Chatted User is added");
+                        }
+                    });
+                }
+            }
+        });
+
+        final String[] usernamemyid = new String[1];
+        DocumentReference documentReferenceMyid = fStore.collection("User").document(fAuth.getUid());
+        documentReferenceMyid.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (value != null) {
+                    usernamemyid[0] = value.getString("Name");
+                    Log.d("TAG MessageActivity","username"+ usernamemyid[0]);
+
+                    DocumentReference documentReference2 = fStore.collection("ChatList").document(userid).collection(userid).document(fAuth.getUid());
+                    Map<String,Object> recentChattedUser2 = new HashMap<>();
+                    recentChattedUser2.put("id",fAuth.getUid());
+                    recentChattedUser2.put("Name", usernamemyid[0]);
+                    documentReference2.set(recentChattedUser2).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("TAG MessageActivity2", "onSuccess: Recent Chatted User2 is added");
+                        }
+                    });
+                }
+            }
+        });
+
         DocumentReference documentReference = fStore.collection("Chats").document();
         Map<String, Object> chat = new HashMap<>();
         chat.put("Sender", sender);
@@ -128,6 +179,19 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
             public void onSuccess(Void aVoid) {
                 Log.d("TAG", "onSuccess: Message is sent");
             }
+        });
+
+        DocumentReference documentReference2 = fStore.collection("ChatList").document(fAuth.getUid());
+
+        Map<String, Object> dummy = new HashMap<>();
+        dummy.put("Dummy", "dummy");
+
+        documentReference2.set(dummy).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("TAG MessageActivity", "onSuccess: Recent Chatted User is added");
+            }
+
         });
     }
 

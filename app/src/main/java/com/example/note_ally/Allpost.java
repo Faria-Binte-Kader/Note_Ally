@@ -43,7 +43,7 @@ public class Allpost extends AppCompatActivity {
 
     String TAG = "TAG allpost";
 
-    public static final String EXTRA_TEXT1 = "com.example.application.example.EXTRA_TEXT1_Allpost";
+    public static final String EXTRA_TEXT1 = "com.example.application.example.EXTRA_TEXT1";
 
     public void reportItem(int position) {
 
