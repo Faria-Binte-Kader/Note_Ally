@@ -71,7 +71,7 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                 job.put("Tag", jobtag);
                 job.put("PostID",documentReference.getId());
 
-                DocumentReference documentReference2 = fstoreJob.collection("JobTags").document();
+                DocumentReference documentReference2 = fstoreJob.collection("JobTags").document(jobtag);
                 Map<String, Object> tag = new HashMap<>();
                 tag.put("Tagname", jobtag);
 
@@ -92,8 +92,8 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                                                 DocumentSnapshot doc = task.getResult();
                                                 if (doc.exists()) {
                                                     cnt = doc.getString("Count");
-                                                    int temp = Integer.parseInt(cnt) + 1;
-                                                    cnt = String.valueOf(temp);
+                                                    //int temp = Integer.parseInt(cnt) + 1;
+                                                    cnt = cnt + 1;
 
                                                     DocumentReference documentReference4 = fstoreJob.collection("NotificationCount").document(id);
                                                     Map<String, Object> count = new HashMap<>();
