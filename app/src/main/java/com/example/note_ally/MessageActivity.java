@@ -30,6 +30,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -103,11 +104,16 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
         });
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
+
+            Long time = System.nanoTime();
+            //Long tsLong = System.currentTimeMillis();
+            String ts = time.toString();
+
             @Override
             public void onClick(View view) {
                 String msg= msg_editText.getText().toString();
                 if(!msg.equals("")){
-                    sendMessage(fUser,userid,msg);
+                    sendMessage(fUser,userid,msg,ts);
                 }else{
                     Toast.makeText(MessageActivity.this, "Please send a non empty message", Toast.LENGTH_SHORT).show();
                 }
@@ -118,7 +124,7 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
         readMessage(fUser,userid);
     }
 
-    private void sendMessage(String sender, String receiver, String message) {
+    private void sendMessage(String sender, String receiver, String message,String sentTime) {
         fUser = fAuth.getCurrentUser().getUid();
         intent = getIntent();
         String userid = intent.getStringExtra(Allpost.EXTRA_TEXT1);
@@ -174,6 +180,7 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
         chat.put("Sender", sender);
         chat.put("Receiver", receiver);
         chat.put("Message", message);
+        chat.put("SentTime",sentTime);
         documentReference.set(chat).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -199,6 +206,7 @@ public class MessageActivity extends AppCompatActivity implements AdapterView.On
         Log.v("TAG ---I---",myid);
 
         fStore.collection("Chats")
+                .orderBy("SentTime")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     String sender,receiver,msg;
