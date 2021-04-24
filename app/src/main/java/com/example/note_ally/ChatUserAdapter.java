@@ -42,7 +42,7 @@ public class ChatUserAdapter extends RecyclerView.Adapter<ViewHolderUser> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolderUser holder, int position) {
             holder.username.setText(userArrayList.get(position).getName());
-            holder.profile_image.setImageResource(R.mipmap.ic_launcher_round);
+            holder.profile_image.setImageResource(R.drawable.ic_profilechat);
             holder.username.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

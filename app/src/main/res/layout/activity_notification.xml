@@ -6,7 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="9"
-    android:background="@color/blue_100">
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notifications"
+        android:textStyle="bold"
+        android:textSize="40dp"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:background="@color/blue_700"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notificationRecycle"

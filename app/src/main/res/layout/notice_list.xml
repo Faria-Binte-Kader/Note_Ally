@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardElevation="5dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/blue_100"
     app:cardCornerRadius="3dp"
     app:cardUseCompatPadding="true"
     >

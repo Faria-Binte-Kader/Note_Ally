@@ -43,7 +43,7 @@ public class UserAdapter extends RecyclerView.Adapter<ViewHolderUser> {
     public void onBindViewHolder(@NonNull ViewHolderUser holder, int position) {
         if(holder.username.getText()!=null){
             holder.username.setText(userArrayList.get(position).getName());
-            holder.profile_image.setImageResource(R.mipmap.ic_launcher_round);
+            holder.profile_image.setImageResource(R.drawable.ic_profilechat);
         }
 
     }
