@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -30,6 +31,8 @@ public class ViewNote extends AppCompatActivity implements AdapterView.OnItemSel
     FirebaseFirestore fstoreNote;
     ArrayList<Notes> notesArrayList;
     NotesAdapter adapter;
+    FirebaseAuth fAuthnote;
+    String uid;
 
     public void removeItem(int position) {
 
@@ -58,6 +61,8 @@ public class ViewNote extends AppCompatActivity implements AdapterView.OnItemSel
         RecyclerView.setHasFixedSize(true);
         RecyclerView.setLayoutManager(new LinearLayoutManager(this));
         fstoreNote = FirebaseFirestore.getInstance();
+        fAuthnote = FirebaseAuth.getInstance();
+        uid = fAuthnote.getCurrentUser().getUid();
 
         loadDataFromFirebase();
     }
@@ -66,6 +71,7 @@ public class ViewNote extends AppCompatActivity implements AdapterView.OnItemSel
         if (notesArrayList.size() > 0)
             notesArrayList.clear();
         fstoreNote.collection("Note")
+                .whereEqualTo("UserID", uid)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     String title, details,pid;
@@ -77,7 +83,7 @@ public class ViewNote extends AppCompatActivity implements AdapterView.OnItemSel
                             details = querySnapshot.getString("Details");
                             pid = querySnapshot.getString("PostID");
 
-                            Notes notes = new Notes(title,details,pid);
+                            Notes notes = new Notes(title,details,pid,uid);
                             notesArrayList.add(notes);
                         }
                         adapter = new NotesAdapter(ViewNote.this, notesArrayList);

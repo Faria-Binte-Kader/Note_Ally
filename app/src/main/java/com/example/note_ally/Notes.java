@@ -4,14 +4,16 @@ public class Notes {
     private String Title;
     private String Details;
     private String postID;
+    private String userID;
 
     public Notes() {
     }
 
-    public Notes(String ttl, String det, String pid) {
+    public Notes(String ttl, String det, String pid, String uid) {
         Title = ttl;
         Details = det;
         postID = pid;
+        userID = uid;
     }
 
     public String getTitle() {
@@ -37,4 +39,14 @@ public class Notes {
     public void setPostID(String pid) {
         postID = pid;
     }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String uid) {
+        userID= uid;
+    }
+
+
 }

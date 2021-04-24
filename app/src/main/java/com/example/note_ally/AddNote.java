@@ -27,6 +27,8 @@ public class AddNote extends AppCompatActivity implements AdapterView.OnItemSele
     Button addNoteBtn;
 
     FirebaseFirestore fstoreNote;
+    FirebaseAuth fAuthnote;
+    String uid;
 
     private EditText noteTitle, noteDetails;
 
@@ -41,6 +43,9 @@ public class AddNote extends AppCompatActivity implements AdapterView.OnItemSele
 
         fstoreNote = FirebaseFirestore.getInstance();
 
+        fAuthnote = FirebaseAuth.getInstance();
+        uid = fAuthnote.getCurrentUser().getUid();
+
         addNoteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +57,7 @@ public class AddNote extends AppCompatActivity implements AdapterView.OnItemSele
                 note.put("Title", notetitle);
                 note.put("Details", notedetails);
                 note.put("PostID",documentReference.getId());
+                note.put("UserID",uid);
 
                 documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
