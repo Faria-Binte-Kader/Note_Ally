@@ -38,7 +38,7 @@ public class login extends AppCompatActivity implements AdapterView.OnItemSelect
         fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
 
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+        /*if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
             DocumentReference documentReference2 = FirebaseFirestore.getInstance().collection("User").document(user);
             documentReference2.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -49,7 +49,7 @@ public class login extends AppCompatActivity implements AdapterView.OnItemSelect
                 }
             });
             finish();
-        }
+        }*/
 
         setContentView(R.layout.activity_login);
 
@@ -97,10 +97,10 @@ public class login extends AppCompatActivity implements AdapterView.OnItemSelect
         input.requestFocus();
     }
 
-    public void gotosignupbutton(View view) {
+   /* public void gotosignupbutton(View view) {
         Intent intent = new Intent(login.this, signup.class);
         startActivity(intent);
-    }
+    }*/
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

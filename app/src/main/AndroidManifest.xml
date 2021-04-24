@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteAlly">
         <activity android:name=".MessageActivity" />
+        <activity android:name=".login1"/>
         <activity android:name=".Addbuypost" />
         <activity android:name=".Addrentpost" />
         <activity android:name=".Allrentpost" />
