@@ -18,8 +18,18 @@ import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
 public class MypostmarketAdapter extends RecyclerView.Adapter<Viewholdermypostmarket>{
 
-   Mypostmarket mypostmarket;
+    Mypostmarket mypostmarket;
     ArrayList<Buypost>modelpictures;
+    private MypostmarketAdapter.OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+        void onDeleteClick(int position);
+    }
+
+    public void setOnItemClickListener(MypostmarketAdapter.OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     public MypostmarketAdapter(Mypostmarket mypostmarket, ArrayList<Buypost>modelpictures)
     {
@@ -34,7 +44,7 @@ public class MypostmarketAdapter extends RecyclerView.Adapter<Viewholdermypostma
         LayoutInflater layoutInflater = LayoutInflater.from(mypostmarket.getBaseContext());
         View view = layoutInflater.inflate(R.layout.mypostmarket_list, null, false);
 
-        return new Viewholdermypostmarket(view);
+        return new Viewholdermypostmarket(view,mListener);
     }
 
     @Override

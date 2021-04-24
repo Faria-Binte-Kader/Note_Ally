@@ -61,6 +61,7 @@ public class AddNotice extends AppCompatActivity implements AdapterView.OnItemSe
                         Log.d(TAG, "onSuccess: notice added");
                     }
                 });
+                Toast.makeText(AddNotice.this, "Added Successfully ", Toast.LENGTH_SHORT).show();
 
                 startActivity(new Intent(getApplicationContext(), FindNotice.class));
             }

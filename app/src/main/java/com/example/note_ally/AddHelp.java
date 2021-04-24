@@ -61,6 +61,7 @@ public class AddHelp extends AppCompatActivity implements AdapterView.OnItemSele
                         Log.d(TAG, "onSuccess: help added");
                     }
                 });
+                Toast.makeText(AddHelp.this, "Added Successfully ", Toast.LENGTH_SHORT).show();
 
                 startActivity(new Intent(getApplicationContext(), FindHelp.class));
             }

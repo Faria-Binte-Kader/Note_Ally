@@ -139,6 +139,7 @@ public class Addbuypost extends AppCompatActivity {
                                 pdf.put("Username", name);
                                 pdf.put("UserID", uid);
                                 pdf.put("Downloadlink", url);
+                                pdf.put("PostID", documentReference.getId());
 
                                 documentReference.set(pdf).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

@@ -65,6 +65,7 @@ public class AddEvent extends AppCompatActivity implements AdapterView.OnItemSel
                         Log.d(TAG, "onSuccess: event added");
                     }
                 });
+                Toast.makeText(AddEvent.this, "Added Successfully ", Toast.LENGTH_SHORT).show();
 
                 startActivity(new Intent(getApplicationContext(), FindEvent.class));
             }

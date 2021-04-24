@@ -70,19 +70,18 @@
                 android:layout_height="300dp"
                 />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
 
-            <Button
-                android:id="@+id/deletemarket"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".25"
-                android:elevation="7dp"
-                android:text="delete post" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_delete"
+                android:id="@+id/marketpostdelete"/>
+
         </LinearLayout>
 
     </LinearLayout>

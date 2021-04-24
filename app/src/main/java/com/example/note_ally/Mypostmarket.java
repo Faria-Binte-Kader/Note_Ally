@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +35,33 @@ public class Mypostmarket extends AppCompatActivity{
     FirebaseAuth fAuthpost;
 
     String TAG = "TAG mypostmarket";
+
+    public void removeItem(int position) {
+
+        final String id= mypostArrayList.get(position).getPostID();
+
+        fstorepost.collection("BUYSELLPOSTS").document(id)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG","Success");
+                    }
+                });
+
+        fstorepost.collection("RENTPOSTS").document(id)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG","Success");
+                    }
+                });
+
+        mypostArrayList.remove(position);
+        adapter.notifyItemRemoved(position);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +86,10 @@ public class Mypostmarket extends AppCompatActivity{
         if (mypostArrayList.size() > 0)
             mypostArrayList.clear();
         fstorepost.collection("BUYSELLPOSTS")
+                .whereEqualTo("UserID", uid)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    String link, details,tag,name,uid,pname;
+                    String link, details,tag,name,pname,pid;
 
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -71,13 +100,23 @@ public class Mypostmarket extends AppCompatActivity{
                             name = querySnapshot.getString("Username");
                             uid = querySnapshot.getString("UserID");
                             link = querySnapshot.getString("Downloadlink");
+                            pid = querySnapshot.getString("PostID");
 
-
-                            Buypost buypost = new Buypost(tag,details,name,uid,link,pname);
+                            Buypost buypost = new Buypost(tag,details,name,uid,link,pname,pid);
                             mypostArrayList.add(buypost);
                         }
                         adapter = new MypostmarketAdapter(Mypostmarket.this, mypostArrayList);
                         RecyclerView.setAdapter(adapter);
+                        adapter.setOnItemClickListener(new MypostmarketAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+
+                            }
+                            @Override
+                            public void onDeleteClick(int position) {
+                                removeItem(position);
+                            }
+                        });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -90,9 +129,10 @@ public class Mypostmarket extends AppCompatActivity{
         if (mypostArrayList.size() > 0)
             mypostArrayList.clear();
         fstorepost.collection("RENTPOSTS")
+                .whereEqualTo("UserID", uid)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    String link, details,tag,name,uid,pname;
+                    String link, details,tag,name,uid,pname,pid;
 
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -103,13 +143,23 @@ public class Mypostmarket extends AppCompatActivity{
                             name = querySnapshot.getString("Username");
                             uid = querySnapshot.getString("UserID");
                             link = querySnapshot.getString("Downloadlink");
+                            pid = querySnapshot.getString("PostID");
 
-
-                            Buypost buypost = new Buypost(tag,details,name,uid,link,pname);
+                            Buypost buypost = new Buypost(tag,details,name,uid,link,pname,pid);
                             mypostArrayList.add(buypost);
                         }
                         adapter = new MypostmarketAdapter(Mypostmarket.this, mypostArrayList);
                         RecyclerView.setAdapter(adapter);
+                        adapter.setOnItemClickListener(new MypostmarketAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+
+                            }
+                            @Override
+                            public void onDeleteClick(int position) {
+                                removeItem(position);
+                            }
+                        });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

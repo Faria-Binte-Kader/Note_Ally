@@ -59,6 +59,7 @@ public class AddNote extends AppCompatActivity implements AdapterView.OnItemSele
                         Log.d(TAG, "onSuccess: note added");
                     }
                 });
+                Toast.makeText(AddNote.this, "Added Successfully ", Toast.LENGTH_SHORT).show();
 
                 startActivity(new Intent(getApplicationContext(), ViewNote.class));
             }

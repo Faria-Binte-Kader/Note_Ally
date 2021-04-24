@@ -2,14 +2,14 @@ package com.example.note_ally;
 
 public class Buypost {
     private String tag,productname;
-    private String username, userId;
+    private String username, userId, postID;
     private String Details;
     private String downloadlink;
 
     public Buypost() {
     }
 
-    public Buypost(String tg, String det, String usernam, String userid, String link,String pronam) {
+    public Buypost(String tg, String det, String usernam, String userid, String link,String pronam,String pid) {
 
         tag = tg;
         Details = det;
@@ -17,6 +17,7 @@ public class Buypost {
         userId = userid;
         downloadlink = link;
         productname = pronam;
+        postID = pid;
 
     }
 
@@ -36,9 +37,13 @@ public class Buypost {
         return downloadlink;
     }
     public String getProductname() { return productname;}
+    public String getPostID() {
+        return postID;
+    }
 
-
-
+    public void setPostID(String postID) {
+        this.postID = postID;
+    }
     public void setUsername(String nam) {
         username = nam;
     }

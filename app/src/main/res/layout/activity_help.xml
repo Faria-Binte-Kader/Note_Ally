@@ -1,14 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Help">
+    android:orientation="vertical"
+    android:padding="20dp">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="help"/>
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Login with mail and password or Signup as new user anytime."
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Go to Profile to view and update your profile."
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Go to Chat to view chat history with others."
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Go to Notification to view jobs under saved tags."
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Go to top right corner for Help and Logout option."
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Go to Menu for notes, posts, documents, products, jobs, events and admission posts."
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Go to My Notes to add, view, copy and delete notes."
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Go to Feed to add and view posts, delete or report posts and chat with users who posted."
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Go to Repository to add or download pdf documents and pictures."
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Go to Marketplace to view and add buy or rent posts, delete posts and chat with seller."
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Go to Find Jobs and Events to add and view posted jobs and events. Inside Find Jobs go to Tags and save a tag to get notified with jobs posted with that tag."
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:text="Go to Admission to add and view queries or recommendations and notices."
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+</ScrollView>

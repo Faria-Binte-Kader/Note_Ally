@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/gray"
                 android:padding="10dp"
-                android:text="Insert a photo if necessary"
+                android:text="Insert a photo"
                 android:textColor="@color/black"
                 android:layout_marginTop="10dp"
                 android:textSize="20sp"

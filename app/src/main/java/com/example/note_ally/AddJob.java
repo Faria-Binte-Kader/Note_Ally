@@ -77,6 +77,7 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                         Log.d(TAG, "onSuccess: job added");
                     }
                 });
+                Toast.makeText(AddJob.this, "Added Successfully ", Toast.LENGTH_SHORT).show();
 
                 startActivity(new Intent(getApplicationContext(), FindJob.class));
             }

@@ -67,7 +67,7 @@ public class Allrentpost extends AppCompatActivity implements View.OnClickListen
                         .whereEqualTo("Tag", s.toUpperCase())
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            String link, details,tag,name,uid,pname;
+                            String link, details,tag,name,uid,pname,pid;
 
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -79,8 +79,9 @@ public class Allrentpost extends AppCompatActivity implements View.OnClickListen
                                     name = querySnapshot.getString("Username");
                                     uid = querySnapshot.getString("UserID");
                                     link = querySnapshot.getString("Downloadlink");
+                                    pid = querySnapshot.getString("PostID");
 
-                                    Buypost buypost = new Buypost(tag,details,name,uid,link,pname);
+                                    Buypost buypost = new Buypost(tag,details,name,uid,link,pname,pid);
                                     allbuyArrayList.add(buypost);
                                 }
                                 adapter = new RentpostAdapter(Allrentpost.this, allbuyArrayList);
@@ -110,7 +111,7 @@ public class Allrentpost extends AppCompatActivity implements View.OnClickListen
         fstorebuy.collection("RENTPOSTS")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    String link, details,tag,name,uid,pname;
+                    String link, details,tag,name,uid,pname,pid;
 
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -121,9 +122,9 @@ public class Allrentpost extends AppCompatActivity implements View.OnClickListen
                             name = querySnapshot.getString("Username");
                             uid = querySnapshot.getString("UserID");
                             link = querySnapshot.getString("Downloadlink");
+                            pid = querySnapshot.getString("PostID");
 
-
-                            Buypost buypost = new Buypost(tag,details,name,uid,link,pname);
+                            Buypost buypost = new Buypost(tag,details,name,uid,link,pname,pid);
                             allbuyArrayList.add(buypost);
                         }
                         adapter = new RentpostAdapter(Allrentpost.this, allbuyArrayList);
