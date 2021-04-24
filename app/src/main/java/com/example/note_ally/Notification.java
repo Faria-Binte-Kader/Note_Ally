@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +25,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Notification extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -52,7 +55,37 @@ public class Notification extends AppCompatActivity implements AdapterView.OnIte
 
         uid = fAuthNotif.getCurrentUser().getUid();
 
-        DocumentReference docRef = fstoreNotification.collection("UserTags").document(uid);
+        if (jobNotificationArrayList.size() > 0)
+            jobNotificationArrayList.clear();
+        fstoreNotification.collection("Notifications").document(uid).collection("Notifs")
+                .orderBy("Serial")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    String company, position, details;
+
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (DocumentSnapshot querySnapshot : task.getResult()) {
+                            company = querySnapshot.getString("Company");
+                            position = querySnapshot.getString("Position");
+                            details = querySnapshot.getString("Details");
+
+                            JobNotification jobNotification = new JobNotification(company,position,details);
+                            jobNotificationArrayList.add(jobNotification);
+                        }
+                        adapter = new JobNotificationAdapter(Notification.this, jobNotificationArrayList);
+                        RecyclerView.setAdapter(adapter);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Notification.this, "Problem ---I---", Toast.LENGTH_SHORT).show();
+                        Log.v("---I---", e.getMessage());
+                    }
+                });
+
+        /*DocumentReference docRef = fstoreNotification.collection("UserTags").document(uid);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -97,7 +130,7 @@ public class Notification extends AppCompatActivity implements AdapterView.OnIte
                     Log.d("TAG", "got failed with ", task.getException());
                 }
             }
-        });
+        });*/
 
         /*if (jobNotificationArrayList.size() > 0)
             jobNotificationArrayList.clear();

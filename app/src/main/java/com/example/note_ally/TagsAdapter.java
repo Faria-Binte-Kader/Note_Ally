@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
@@ -67,6 +68,18 @@ public class TagsAdapter extends RecyclerView.Adapter<ViewHolderTags> {
 
                 Map<String, Object> usertag = new HashMap<>();
                 usertag.put("Jobtag", tagname);
+                usertag.put("UserID", userIDtag);
+
+                DocumentReference documentReference4 = fStoretag.collection("NotificationCount").document(userIDtag);
+                Map<String, Object> count = new HashMap<>();
+                count.put("Count", "0");
+
+                documentReference4.set(count).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                });
 
                 documentReference.set(usertag).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
