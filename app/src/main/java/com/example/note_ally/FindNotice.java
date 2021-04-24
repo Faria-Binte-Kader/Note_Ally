@@ -69,7 +69,8 @@ public class FindNotice extends AppCompatActivity implements AdapterView.OnItemS
                 if (noticeArrayList.size() > 0)
                     noticeArrayList.clear();
                 fstoreNotice.collection("Notice")
-                        .whereEqualTo("Tag", s.toUpperCase())
+                        .whereGreaterThanOrEqualTo("Tag", s.toUpperCase())
+                        .orderBy("Tag").startAt(s.toUpperCase()).endAt(s.toUpperCase() + "\uf8ff")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             String institution, details, tag;

@@ -62,7 +62,8 @@ public class Allpdf extends AppCompatActivity implements View.OnClickListener{
                 if (allpdfArrayList.size() > 0)
                     allpdfArrayList.clear();
                 fstorepdf.collection("PDF")
-                        .whereEqualTo("Tag", s.toUpperCase())
+                        .whereGreaterThanOrEqualTo("Tag", s.toUpperCase())
+                        .orderBy("Tag").startAt(s.toUpperCase()).endAt(s.toUpperCase() + "\uf8ff")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             String link, details,tag,name,uid,pname;

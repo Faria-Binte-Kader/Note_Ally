@@ -69,7 +69,8 @@ public class FindEvent extends AppCompatActivity implements AdapterView.OnItemSe
                 if (eventArrayList.size() > 0)
                     eventArrayList.clear();
                 fstoreEvent.collection("Event")
-                        .whereEqualTo("Tag", s.toUpperCase())
+                        .whereGreaterThanOrEqualTo("Tag", s.toUpperCase())
+                        .orderBy("Tag").startAt(s.toUpperCase()).endAt(s.toUpperCase() + "\uf8ff")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             String organizer, location, details, tag;

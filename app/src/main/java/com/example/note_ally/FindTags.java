@@ -60,7 +60,8 @@ public class FindTags extends AppCompatActivity {
                 if (tagsArrayList.size() > 0)
                     tagsArrayList.clear();
                 fstoretag.collection("JobTags")
-                        .whereEqualTo("Tagname", s.toUpperCase())
+                        .whereGreaterThanOrEqualTo("Tagname", s.toUpperCase())
+                        .orderBy("Tagname").startAt(s.toUpperCase()).endAt(s.toUpperCase() + "\uf8ff")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             String tagname,uid,pid;

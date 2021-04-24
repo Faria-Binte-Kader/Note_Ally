@@ -109,7 +109,8 @@ public class Allpost extends AppCompatActivity {
                 if (allpostArrayList.size() > 0)
                     allpostArrayList.clear();
                 fstorepost.collection("FeedPost")
-                        .whereEqualTo("Tag", s.toUpperCase())
+                        .whereGreaterThanOrEqualTo("Tag", s.toUpperCase())
+                        .orderBy("Tag").startAt(s.toUpperCase()).endAt(s.toUpperCase() + "\uf8ff")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             String like, dislike, details,tag,report,name,uid,pid;

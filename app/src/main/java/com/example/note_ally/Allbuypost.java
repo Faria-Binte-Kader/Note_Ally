@@ -64,7 +64,8 @@ public class Allbuypost extends AppCompatActivity implements View.OnClickListene
                 if (allbuyArrayList.size() > 0)
                     allbuyArrayList.clear();
                 fstorebuy.collection("BUYSELLPOSTS")
-                        .whereEqualTo("Tag", s.toUpperCase())
+                        .whereGreaterThanOrEqualTo("Tag", s.toUpperCase())
+                        .orderBy("Tag").startAt(s.toUpperCase()).endAt(s.toUpperCase() + "\uf8ff")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             String link, details,tag,name,uid,pname,pid;

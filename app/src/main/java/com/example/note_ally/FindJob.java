@@ -77,7 +77,8 @@ public class FindJob extends AppCompatActivity implements AdapterView.OnItemSele
                 if (jobArrayList.size() > 0)
                     jobArrayList.clear();
                 fstoreJob.collection("Job")
-                        .whereEqualTo("Tag", s.toUpperCase())
+                        .whereGreaterThanOrEqualTo("Tag", s.toUpperCase())
+                        .orderBy("Tag").startAt(s.toUpperCase()).endAt(s.toUpperCase() + "\uf8ff")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             String company, position, details, tag;

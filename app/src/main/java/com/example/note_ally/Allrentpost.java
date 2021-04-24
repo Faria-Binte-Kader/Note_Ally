@@ -64,7 +64,8 @@ public class Allrentpost extends AppCompatActivity implements View.OnClickListen
                 if (allbuyArrayList.size() > 0)
                     allbuyArrayList.clear();
                 fstorebuy.collection("RENTPOSTS")
-                        .whereEqualTo("Tag", s.toUpperCase())
+                        .whereGreaterThanOrEqualTo("Tag", s.toUpperCase())
+                        .orderBy("Tag").startAt(s.toUpperCase()).endAt(s.toUpperCase() + "\uf8ff")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             String link, details,tag,name,uid,pname,pid;

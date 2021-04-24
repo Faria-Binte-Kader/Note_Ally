@@ -68,7 +68,8 @@ public class FindHelp extends AppCompatActivity implements AdapterView.OnItemSel
                 if (helpArrayList.size() > 0)
                     helpArrayList.clear();
                 fstoreAdmissionHelp.collection("Admissionhelp")
-                        .whereEqualTo("Tag", s.toUpperCase())
+                        .whereGreaterThanOrEqualTo("Tag", s.toUpperCase())
+                        .orderBy("Tag").startAt(s.toUpperCase()).endAt(s.toUpperCase() + "\uf8ff")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             String institutionsubject, details, tag;

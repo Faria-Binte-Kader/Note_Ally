@@ -69,7 +69,8 @@ public class Allpicture extends AppCompatActivity implements View.OnClickListene
                 if (allpictureArrayList.size() > 0)
                     allpictureArrayList.clear();
                 fstorepicture.collection("PICTURE")
-                        .whereEqualTo("Tag", s.toUpperCase())
+                        .whereGreaterThanOrEqualTo("Tag", s.toUpperCase())
+                        .orderBy("Tag").startAt(s.toUpperCase()).endAt(s.toUpperCase() + "\uf8ff")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             String link, details,tag,name,uid;
