@@ -23,6 +23,7 @@ public class fragment_marketplace extends Fragment implements View.OnClickListen
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.buybtn).setOnClickListener(this);
         view.findViewById(R.id.rentbtn).setOnClickListener(this);
+        view.findViewById(R.id.mypostbtnmarket).setOnClickListener(this);
     }
 
     @Override
@@ -37,6 +38,11 @@ public class fragment_marketplace extends Fragment implements View.OnClickListen
                 SharedPrefManager.getInstance(getActivity()).clear();
                 Intent intent2 = new Intent(getActivity(), Allrentpost.class);
                 startActivity(intent2);
+                break;
+            case R.id.mypostbtnmarket:
+                SharedPrefManager.getInstance(getActivity()).clear();
+                Intent intent3 = new Intent(getActivity(), Mypostmarket.class);
+                startActivity(intent3);
                 break;
         }
     }

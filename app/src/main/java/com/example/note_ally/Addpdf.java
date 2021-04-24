@@ -42,7 +42,7 @@ public class Addpdf extends AppCompatActivity implements AdapterView.OnItemSelec
     ProgressDialog dialog;
     String myurl,name;
 
-    private EditText pdftag,pdfdetails;
+    private EditText pdftag,pdfdetails,pdfnam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class Addpdf extends AppCompatActivity implements AdapterView.OnItemSelec
         addpdfbtn = findViewById(R.id.add_pdf_btn);
         pdfdetails = findViewById(R.id.addpdfdetails);
         pdftag = findViewById(R.id.addpdftag);
+        pdfnam = findViewById(R.id.addpdfproductname);
         choosepdfbtn= findViewById(R.id.choosepdfbtn);
 
         fstorepdf = FirebaseFirestore.getInstance();
@@ -86,11 +87,13 @@ public class Addpdf extends AppCompatActivity implements AdapterView.OnItemSelec
             public void onClick(View view) {
                 final String pdftg = pdftag.getText().toString().toUpperCase();
                 final String pdfdet= pdfdetails.getText().toString();
+                final String pdfname= pdfnam.getText().toString();
 
                 DocumentReference documentReference = fstorepdf.collection("PDF").document();
                 Map<String, Object> pdf = new HashMap<>();
                 pdf.put("Details", pdfdet);
                 pdf.put("Tag", pdftg);
+                pdf.put("Productname", pdfname);
                 pdf.put("Username", name);
                 pdf.put("UserID", uid);
                 pdf.put("Downloadlink", myurl);

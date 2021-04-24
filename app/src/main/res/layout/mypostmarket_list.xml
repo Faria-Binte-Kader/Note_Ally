@@ -21,9 +21,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp">
-
             <TextView
-                android:id="@+id/pdfname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Name: "
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/productnamemarket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -31,67 +36,54 @@
                 android:textColor="@color/black"
                 />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details: "
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/detailsmarket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/pdfproductname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
+            <ImageView
+                android:id="@+id/pictureview3"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
                 />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/pdfdetails"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/deletemarket"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                />
+                android:layout_weight=".25"
+                android:elevation="7dp"
+                android:text="delete post" />
         </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="download link: "
-            android:textColor="@color/black"
-            />
-            <TextView
-                android:id="@+id/pdfdownloadlink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                />
-
-        <Button
-            android:id="@+id/downloadpdf"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".25"
-            android:elevation="7dp"
-            android:text="Download" />
-    </LinearLayout>
 
     </LinearLayout>
 

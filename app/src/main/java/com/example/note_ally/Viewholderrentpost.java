@@ -13,7 +13,7 @@ public class Viewholderrentpost extends RecyclerView.ViewHolder{
     TextView productname, username;
     ImageView pictureview;
     TextView details;
-    Button save;
+    ImageView save, chat;
 
     public Viewholderrentpost(@NonNull View itemView) {
         super(itemView);
@@ -22,6 +22,8 @@ public class Viewholderrentpost extends RecyclerView.ViewHolder{
         details=itemView.findViewById(R.id.detailsrent);
         pictureview=itemView.findViewById(R.id.pictureview2);
         save = itemView.findViewById(R.id.downloadpicture2);
+        chat = itemView.findViewById(R.id.rentpostchat);
+
 
 
     }

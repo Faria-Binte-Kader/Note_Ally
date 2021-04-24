@@ -27,6 +27,7 @@ public class Allrentpost extends AppCompatActivity implements View.OnClickListen
     FirebaseFirestore fstorebuy;
     ArrayList<Buypost> allbuyArrayList;
     RentpostAdapter adapter;
+    public static final String EXTRA_TEXT1 = "com.example.application.example.EXTRA_TEXT1_Allpost";
 
     FirebaseAuth fAuthbuy;
 
@@ -151,5 +152,11 @@ public class Allrentpost extends AppCompatActivity implements View.OnClickListen
                 break;
         }
 
+    }
+    public void chat(String s) {
+        Intent intent = new Intent(Allrentpost.this, MessageActivity.class);
+        intent.putExtra(EXTRA_TEXT1, s);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

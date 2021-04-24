@@ -30,5 +30,17 @@
         android:text="RENT"
         android:textColor="@color/white"
         android:textSize="20sp"/>
+    <Button
+        android:id="@+id/mypostbtnmarket"
+        android:layout_width="200dp"
+        android:layout_height="69dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp"
+        android:background="@drawable/button_rounded"
+        android:padding="10dp"
+        android:text="MY POSTS"
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
+
 
 </LinearLayout>

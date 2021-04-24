@@ -65,7 +65,7 @@ public class Allpdf extends AppCompatActivity implements View.OnClickListener{
                         .whereEqualTo("Tag", s.toUpperCase())
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            String link, details,tag,name,uid;
+                            String link, details,tag,name,uid,pname;
 
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -76,8 +76,10 @@ public class Allpdf extends AppCompatActivity implements View.OnClickListener{
                                     name = querySnapshot.getString("Username");
                                     uid = querySnapshot.getString("UserID");
                                     link = querySnapshot.getString("Downloadlink");
+                                    pname = querySnapshot.getString("Productname");
 
-                                    Modelpdf modelpdf = new Modelpdf(tag,details,name,uid,link);
+
+                                    Modelpdf modelpdf = new Modelpdf(tag,details,name,uid,link,pname);
                                     allpdfArrayList.add(modelpdf);
                                 }
                                 adapter = new PdfAdapter(Allpdf.this, allpdfArrayList);
@@ -107,7 +109,7 @@ public class Allpdf extends AppCompatActivity implements View.OnClickListener{
         fstorepdf.collection("PDF")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    String link, details,tag,name,uid;
+                    String link, details,tag,name,uid,pname;
 
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -117,9 +119,10 @@ public class Allpdf extends AppCompatActivity implements View.OnClickListener{
                             name = querySnapshot.getString("Username");
                             uid = querySnapshot.getString("UserID");
                             link = querySnapshot.getString("Downloadlink");
+                            pname = querySnapshot.getString("Productname");
 
 
-                            Modelpdf modelpdf = new Modelpdf(tag,details,name,uid,link);
+                            Modelpdf modelpdf = new Modelpdf(tag,details,name,uid,link,pname);
                             allpdfArrayList.add(modelpdf);
                         }
                         adapter = new PdfAdapter(Allpdf.this, allpdfArrayList);

@@ -41,10 +41,11 @@ public class PdfAdapter extends RecyclerView.Adapter<Viewholderpdf>{
         holder.details.setText(modelpdfs.get(position).getdetails());
         holder.pdfname.setText(modelpdfs.get(position).getUsername());
         holder.downloadLink.setText(modelpdfs.get(position).getDownloadlink());
+        holder.pronam.setText(modelpdfs.get(position).getPname());
         holder.mDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                downloadFile(holder.details.getContext(),modelpdfs.get(position).getdetails(),".pdf",DIRECTORY_DOWNLOADS,modelpdfs.get(position).getDownloadlink());
+                downloadFile(holder.pronam.getContext(),modelpdfs.get(position).getdetails(),".pdf",DIRECTORY_DOWNLOADS,modelpdfs.get(position).getDownloadlink());
             }
         });
     }
