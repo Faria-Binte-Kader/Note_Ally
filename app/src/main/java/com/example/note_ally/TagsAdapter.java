@@ -64,7 +64,7 @@ public class TagsAdapter extends RecyclerView.Adapter<ViewHolderTags> {
                 fStoretag = FirebaseFirestore.getInstance();
                 userIDtag = fAuthtag.getCurrentUser().getUid();
 
-                DocumentReference documentReference = fStoretag.collection("UserTags").document(userIDtag);
+                DocumentReference documentReference = fStoretag.collection("SavedTags").document(tagname).collection("Tags").document(userIDtag);
 
                 Map<String, Object> usertag = new HashMap<>();
                 usertag.put("Jobtag", tagname);

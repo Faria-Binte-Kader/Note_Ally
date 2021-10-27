@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,8 +37,12 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
     Button addJobBtn;
     String id,cnt;
 
+    int iter2;
+
     FirebaseFirestore fstoreJob;
     FirebaseAuth fauthJob;
+
+    String[] idArray;
 
     private EditText jobCompany, jobPosition, jobDetails, jobTag;
 
@@ -54,6 +59,8 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
 
         fstoreJob = FirebaseFirestore.getInstance();
         fauthJob = FirebaseAuth.getInstance();
+
+        idArray = new String[1000];
 
         addJobBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,16 +82,59 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                 Map<String, Object> tag = new HashMap<>();
                 tag.put("Tagname", jobtag);
 
-                fstoreJob.collection("UserTags")
-                        .whereEqualTo("Jobtag", jobtag.toUpperCase())
+                documentReference2.set(tag).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "onSuccess: tag added");
+                    }
+                });
+
+                documentReference.set(job).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "onSuccess: job added");
+                    }
+                });
+                iter2=0;
+                fstoreJob.collection("SavedTags").document(jobtag).collection("Tags")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            String i;
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 for (DocumentSnapshot querySnapshot : task.getResult()) {
-                                    id = querySnapshot.getString("UserID");
+                                    i = querySnapshot.getString("UserID");
+                                    idArray[iter2]=i;
 
-                                    DocumentReference docRef = fstoreJob.collection("NotificationCount").document(id);
+                                    DocumentReference docu = fstoreJob.collection("Test").document(idArray[iter2]);
+                                    Map<String, Object> id = new HashMap<>();
+                                    id.put("Tagname", jobtag);
+
+                                    docu.set(id).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "onSuccess: tag added");
+                                        }
+                                    });
+
+                                    DocumentReference documentReference3 = fstoreJob.collection("Notifications").document(idArray[iter2]).collection("Notifs").document();
+                                    Map<String, Object> notif = new HashMap<>();
+                                    notif.put("Company", jobcompany);
+                                    notif.put("Position", jobposition);
+                                    notif.put("Details", jobdetails);
+                                    notif.put("Tag", jobtag);
+                                    notif.put("PostID",documentReference.getId());
+                                    notif.put("UserID",idArray[iter2]);
+                                    //notif.put("Serial",cnt);
+
+                                    documentReference3.set(notif).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "onSuccess: notification added");
+                                        }
+                                    });
+
+                                    /*DocumentReference docRef = fstoreJob.collection("NotificationCount").document(idArray[iter2]);
                                     docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -95,7 +145,7 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                                                     //int temp = Integer.parseInt(cnt) + 1;
                                                     cnt = cnt + 1;
 
-                                                    DocumentReference documentReference4 = fstoreJob.collection("NotificationCount").document(id);
+                                                    DocumentReference documentReference4 = fstoreJob.collection("NotificationCount").document(idArray[iter2]);
                                                     Map<String, Object> count = new HashMap<>();
                                                     count.put("Count", cnt);
 
@@ -106,15 +156,15 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                                                         }
                                                     });
 
-                                                    DocumentReference documentReference3 = fstoreJob.collection("Notifications").document(id).collection("Notifs").document();
+                                                    DocumentReference documentReference3 = fstoreJob.collection("Notifications").document(idArray[iter2]).collection("Notifs").document();
                                                     Map<String, Object> notif = new HashMap<>();
                                                     notif.put("Company", jobcompany);
                                                     notif.put("Position", jobposition);
                                                     notif.put("Details", jobdetails);
                                                     notif.put("Tag", jobtag);
                                                     notif.put("PostID",documentReference.getId());
-                                                    notif.put("UserID",fauthJob.getCurrentUser().getUid());
-                                                    notif.put("Serial",cnt);
+                                                    notif.put("UserID",idArray[iter2]);
+                                                    //notif.put("Serial",cnt);
 
                                                     documentReference3.set(notif).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
@@ -130,8 +180,9 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                                                 Log.d("TAG", "got failed with ", task.getException());
                                             }
                                         }
-                                    });
+                                    });*/
 
+                                    iter2++;
                                 }
                             }
                         })
@@ -142,23 +193,68 @@ public class AddJob extends AppCompatActivity implements AdapterView.OnItemSelec
                                 Log.v("---I---", e.getMessage());
                             }
                         });
+                /*int iter;
 
-                documentReference2.set(tag).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "onSuccess: tag added");
-                    }
-                });
+                for(iter = 0; iter < idArray.length; iter++) {
+                    String userid;
+                    userid = idArray[iter];
+                    Log.d("TAG", idArray[iter]);
 
-                documentReference.set(job).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "onSuccess: job added");
-                    }
-                });
+                    DocumentReference docRef = fstoreJob.collection("NotificationCount").document(userid);
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot doc = task.getResult();
+                                if (doc.exists()) {
+                                    cnt = doc.getString("Count");
+                                    //int temp = Integer.parseInt(cnt) + 1;
+                                    cnt = cnt + 1;
+
+                                    DocumentReference documentReference4 = fstoreJob.collection("NotificationCount").document(userid);
+                                    Map<String, Object> count = new HashMap<>();
+                                    count.put("Count", cnt);
+
+                                    documentReference4.set(count).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "onSuccess: notification count added");
+                                        }
+                                    });
+
+                                    DocumentReference documentReference3 = fstoreJob.collection("Notifications").document(userid).collection("Notifs").document();
+                                    Map<String, Object> notif = new HashMap<>();
+                                    notif.put("Company", jobcompany);
+                                    notif.put("Position", jobposition);
+                                    notif.put("Details", jobdetails);
+                                    notif.put("Tag", jobtag);
+                                    notif.put("PostID",documentReference.getId());
+                                    notif.put("UserID",userid);
+                                    notif.put("Serial",cnt);
+
+                                    documentReference3.set(notif).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "onSuccess: notification added");
+                                        }
+                                    });
+
+                                } else {
+                                    Log.d("TAG", "No such document");
+                                }
+                            } else {
+                                Log.d("TAG", "got failed with ", task.getException());
+                            }
+                        }
+                    });
+                }*/
                 Toast.makeText(AddJob.this, "Added Successfully ", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(AddJob.this, FindJob.class));
 
-                startActivity(new Intent(getApplicationContext(), FindJob.class));
+                /*jobCompany.setText("");
+                jobPosition.setText("");
+                jobDetails.setText("");
+                jobTag.setText("");*/
             }
         });
     }

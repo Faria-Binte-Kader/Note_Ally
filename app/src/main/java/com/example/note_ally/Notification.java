@@ -59,7 +59,6 @@ public class Notification extends AppCompatActivity implements AdapterView.OnIte
         if (jobNotificationArrayList.size() > 0)
             jobNotificationArrayList.clear();
         fstoreNotification.collection("Notifications").document(uid).collection("Notifs")
-                .orderBy("Serial", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     String company, position, details, UserID;
@@ -72,10 +71,8 @@ public class Notification extends AppCompatActivity implements AdapterView.OnIte
                             details = querySnapshot.getString("Details");
                             UserID = querySnapshot.getString("UserID");
 
-                            if(!UserID.equals(uid)) {
-                                JobNotification jobNotification = new JobNotification(company, position, details);
-                                jobNotificationArrayList.add(jobNotification);
-                            }
+                            JobNotification jobNotification = new JobNotification(company, position, details);
+                            jobNotificationArrayList.add(jobNotification);
                         }
                         adapter = new JobNotificationAdapter(Notification.this, jobNotificationArrayList);
                         RecyclerView.setAdapter(adapter);
