@@ -9,8 +9,9 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteAlly">
+        <activity android:name=".VerifyEmail"></activity>
         <activity android:name=".MessageActivity" />
-        <activity android:name=".login1"/>
+        <activity android:name=".login1" />
         <activity android:name=".Addbuypost" />
         <activity android:name=".Addrentpost" />
         <activity android:name=".Allrentpost" />
@@ -41,7 +42,7 @@
         <activity android:name=".FindJob" />
         <activity android:name=".login" />
         <activity android:name=".signup" />
-        <activity android:name=".Mypostmarket"/>
+        <activity android:name=".Mypostmarket" />
         <activity android:name=".splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

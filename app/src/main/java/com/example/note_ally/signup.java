@@ -90,40 +90,55 @@ public class signup extends AppCompatActivity implements AdapterView.OnItemSelec
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(signup.this, "User Created", Toast.LENGTH_SHORT).show();
-                            userId = fAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fstore.collection("User").document(userId);
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("Name", name);
-                            user.put("Email", email);
-                            user.put("Gender", type);
-                            user.put("Description", description);
-                            user.put("DOB", dateofbirth);
-                            user.put("Phone", phone);
-                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                            fAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "onSuccess: user profile is created");
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(signup.this, "User Created", Toast.LENGTH_SHORT).show();
+                                        userId = fAuth.getCurrentUser().getUid();
+                                        DocumentReference documentReference = fstore.collection("User").document(userId);
+                                        Map<String, Object> user = new HashMap<>();
+                                        user.put("Name", name);
+                                        user.put("Email", email);
+                                        user.put("Gender", type);
+                                        user.put("Description", description);
+                                        user.put("DOB", dateofbirth);
+                                        user.put("Phone", phone);
+                                        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d(TAG, "onSuccess: user profile is created");
+                                            }
+                                        });
+
+                                        DocumentReference documentReference4 = fstore.collection("NotificationCount").document(userId);
+                                        Map<String, Object> count = new HashMap<>();
+                                        count.put("Count", "");
+
+                                        documentReference4.set(count).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+
+                                            }
+                                        });
+
+                                        startActivity(new Intent(getApplicationContext(), VerifyEmail.class));
+                                    }
                                 }
                             });
-
-                            DocumentReference documentReference4 = fstore.collection("NotificationCount").document(userId);
-                            Map<String, Object> count = new HashMap<>();
-                            count.put("Count", "");
-
-                            documentReference4.set(count).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-
-                                }
-                            });
-
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
                             Toast.makeText(signup.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+            }
+        });
+
+        alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoLoginPage(view);
             }
         });
     }

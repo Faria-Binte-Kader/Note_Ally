@@ -79,14 +79,19 @@ public class login extends AppCompatActivity implements AdapterView.OnItemSelect
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                               // startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                Intent intent = new Intent(login.this, MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                                finish();
+                                if (fAuth.getCurrentUser().isEmailVerified()) {
+                                    // startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    Intent intent = new Intent(login.this, MainActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Toast.makeText(login.this, "Please verify your Email Address", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
                                 Toast.makeText(login.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
+
                         }
                     });
 
